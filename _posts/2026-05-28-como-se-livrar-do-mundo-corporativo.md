@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Como se livrar do mundo corporativo"
+title:  "Como criar um teclado personalizado com um Pipico (tutorial de Raspberry Pi)"
 date:   2026-05-28 13:21:01 -0300
 categories: tutoriais
 ---
