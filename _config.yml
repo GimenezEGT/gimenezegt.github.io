@@ -18,13 +18,11 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: The Knowledge Journey by Enrico Gimenez
+title: Enrico Gimenez
 email: gimenezenrico@yahoo.com.br
-description: >- # this means to ignore newlines until "baseurl:"
-  My path through learning Data Science, Bioinformatics, Statistics and many other things (May have some Literature and Philosophy here. Dont be afraid). Come with me in the journey of becoming more inteligent and helpfull.
+description: Aqui é onde um biólogo começou a gostar de computação.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://gimenezegt.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: Please, stop Twitter...
 github_username:  GimenezEGT
 
 # Build settings
