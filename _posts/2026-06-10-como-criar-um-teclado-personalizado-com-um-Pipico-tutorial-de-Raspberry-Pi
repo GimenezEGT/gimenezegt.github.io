@@ -42,7 +42,7 @@ Botão 2 "tecla" o botão do Windows, digita "cmd" e aperta "Enter", abrindo o t
 # Implementação
 O código ficou muito simples:
 
-```
+~~~
 import time
 import board
 import digitalio
@@ -90,7 +90,7 @@ while True:
     estado_anterior = estado_atual
     
     time.sleep(0.01)
-```
+~~~
 
 O que faz cada coisa:
 
@@ -103,7 +103,7 @@ from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS -> Traduz o texto e
 from adafruit_hid.keycode import Keycode -> Dicionário de teclas especiais.
 
 
-```
+~~~
 #configuração de botao
 btn = digitalio.DigitalInOut(board.GP15)
 btn.direction = digitalio.Direction.INPUT
@@ -112,7 +112,7 @@ btn.pull = digitalio.Pull.UP
 btn2 = digitalio.DigitalInOut(board.GP14)
 btn2.direction = digitalio.Direction.INPUT
 btn2.pull = digitalio.Pull.UP
-```
+~~~
 
 Cada botão tem seu pino, e ambos estão configurados com um resistor de Pull Up. Isso serve para que o botão não fique flutuando seus valores entre 0 e 1.
  O Pipico tem resistores internos que podem ser acionados via código. Esses resistores servem para normalizar a tensão que chega através dos botões.
