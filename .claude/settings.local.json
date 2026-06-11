@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/enrico.gimenez/.claude/plugins/**)",
+      "Read(//c/Users/enrico.gimenez/.claude/**)",
+      "Bash(command -v uv)",
+      "Bash(command -v uvx)",
+      "Bash(command -v specify)",
+      "Bash(command -v git)",
+      "Bash(command -v python)",
+      "Bash(specify --help)",
+      "Bash(specify init *)",
+      "Bash(export PYTHONUTF8=1)",
+      "Bash(export PYTHONIOENCODING=utf-8)",
+      "Bash(export PYTHONLEGACYWINDOWSSTDIO=0)"
+    ]
+  }
+}
