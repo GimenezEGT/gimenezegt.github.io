@@ -13,8 +13,8 @@ Estou usando um Raspberry Pi Pico sem Wi-Fi que estou carinhosamente chamando de
 No que consiste o projeto:
 - Dois botões:
 
-** Um abre o CMD do computador.
-** O outro digita um comando.
+* Um abre o CMD do computador.
+ O outro digita um comando.
 
 Usei o gemini para me ajudar com as ideias de projetos e me corrigir erros.
 
@@ -95,13 +95,13 @@ while True:
 
 O que faz cada coisa:
 
-*import time -> biblioteca time padrão do Python
-*import board -> mapeia os pinos da sua placa. Serve para fazer o setup.
-*import digitalio -> é o equivalente à biblioteca machine do MicroPython. Serve para fazer o setup e para controlar a eletricidade na placa.
-*import usb_hid -> Gerencia a porta USB em baixo nível. HID significa Human Interface Device. É por aqui que você consegue controlar seu PC.
-*from adafruit_hid.keyboard import Keyboard -> Cria o teclado virtual.
-*from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS -> Traduz o texto em comandos de tecla.
-*from adafruit_hid.keycode import Keycode -> Dicionário de teclas especiais.
+* import time -> biblioteca time padrão do Python
+* import board -> mapeia os pinos da sua placa. Serve para fazer o setup.
+* import digitalio -> é o equivalente à biblioteca machine do MicroPython. Serve para fazer o setup e para controlar a eletricidade na placa.
+* import usb_hid -> Gerencia a porta USB em baixo nível. HID significa Human Interface Device. É por aqui que você consegue controlar seu PC.
+* from adafruit_hid.keyboard import Keyboard -> Cria o teclado virtual.
+* from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS -> Traduz o texto em comandos de tecla.
+* from adafruit_hid.keycode import Keycode -> Dicionário de teclas especiais.
 
 
 ~~~
