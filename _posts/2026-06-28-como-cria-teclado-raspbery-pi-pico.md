@@ -12,8 +12,9 @@ Estou usando um Raspberry Pi Pico sem Wi-Fi que estou carinhosamente chamando de
 
 No que consiste o projeto:
 - Dois botões:
-* Um abre o CMD do computador.
-* O outro digita um comando.
+
+** Um abre o CMD do computador.
+** O outro digita um comando.
 
 Usei o gemini para me ajudar com as ideias de projetos e me corrigir erros.
 
@@ -28,14 +29,14 @@ Botão 1 escreve "echo Hello, world!" em qualquer programa aberto com uma caixa 
 Botão 2 "tecla" o botão do Windows, digita "cmd" e aperta "Enter", abrindo o terminal.
 
 # Como instalar o CircuitPython:
-1. Baixe em [https://circuitpython.org/board/raspberry_pi_pico/]
+1. Baixe em [[https://circuitpython.org/board/raspberry_pi_pico/]]
 2. Com o Pipico desconectado do seu PC, pressione o botão de BOOTSEL (Boot Select) e o mantenha pressionado
 3. Conecte o USB do Pipico no PC com o botão pressionado
 4. Arraste o arquivo .uf2 baixado para dentro da pasta do Raspberry
 
 # Como instalar as bibliotecas necessárias
 
-1. Baixe a Library Bundle referente à versão do CircuitPython que você baixou em [https://circuitpython.org/libraries]. Eu usei a versão 10.2.1.
+1. Baixe a Library Bundle referente à versão do CircuitPython que você baixou em [[https://circuitpython.org/libraries]]. Eu usei a versão 10.2.1.
 2. Procure pela pasta adafruit_hid dentro da pasta da Library Bundle que você baixou
 3. Jogue essa pasta dentro da pasta lib no seu Pipico.
 
@@ -94,13 +95,13 @@ while True:
 
 O que faz cada coisa:
 
-import time -> biblioteca time padrão do Python
-import board -> mapeia os pinos da sua placa. Serve para fazer o setup.
-import digitalio -> é o equivalente à biblioteca machine do MicroPython. Serve para fazer o setup e para controlar a eletricidade na placa.
-import usb_hid -> Gerencia a porta USB em baixo nível. HID significa Human Interface Device. É por aqui que você consegue controlar seu PC.
-from adafruit_hid.keyboard import Keyboard -> Cria o teclado virtual.
-from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS -> Traduz o texto em comandos de tecla.
-from adafruit_hid.keycode import Keycode -> Dicionário de teclas especiais.
+*import time -> biblioteca time padrão do Python
+*import board -> mapeia os pinos da sua placa. Serve para fazer o setup.
+*import digitalio -> é o equivalente à biblioteca machine do MicroPython. Serve para fazer o setup e para controlar a eletricidade na placa.
+*import usb_hid -> Gerencia a porta USB em baixo nível. HID significa Human Interface Device. É por aqui que você consegue controlar seu PC.
+*from adafruit_hid.keyboard import Keyboard -> Cria o teclado virtual.
+*from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS -> Traduz o texto em comandos de tecla.
+*from adafruit_hid.keycode import Keycode -> Dicionário de teclas especiais.
 
 
 ~~~
