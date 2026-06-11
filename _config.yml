@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Enrico Gimenez
+title: Enrico Gimenez - Criador
 email: gimenezenrico@yahoo.com.br
 description: Aqui é onde um biólogo começou a gostar de computação.
 baseurl: "" # the subpath of your site, e.g. /blog
