@@ -5,12 +5,12 @@ date:   2026-06-11 01:16:01 -0300
 categories: tutoriais
 ---
 
-Estou começando a aprender sobre eletrônica e microcontroladores, e escolhi um pequeno projeto para entender como funcionam os botões externos nos microcontroladores.
+# Primeiros passos na eletrônica
 
+Estou começando a aprender sobre eletrônica e microcontroladores, e escolhi um pequeno projeto para entender como funcionam os botões externos nos microcontroladores.
 Estou usando um Raspberry Pi Pico sem Wi-Fi que estou carinhosamente chamando de Pipico.
 
 No que consiste o projeto:
-
 - Dois botões:
 * Um abre o CMD do computador.
 * O outro digita um comando.
