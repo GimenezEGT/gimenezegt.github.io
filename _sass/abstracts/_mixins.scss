@@ -1,0 +1,35 @@
+// =============================================================================
+//  Mixins
+// =============================================================================
+
+// Responsive: apply styles at or above a named breakpoint (mobile-first).
+// Usage: @include respond-to("md") { ... }
+@mixin respond-to($name) {
+  $value: bp($name);
+  @if $value != null {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+// Run @content only when the user has NOT requested reduced motion.
+// Gate every animation/transition behind this (Constitution Principle III).
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+// Visually hide an element while keeping it available to assistive tech.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

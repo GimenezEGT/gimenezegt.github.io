@@ -1,0 +1,24 @@
+---
+# Front matter required so Jekyll processes this file through Sass.
+# Compiles to /assets/css/main.css
+---
+
+// ── Abstracts: tokens, mixins, functions (no CSS output) ─────────────────────
+@import "abstracts/functions";
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+// ── Base: reset, typography, global ──────────────────────────────────────────
+@import "base/reset";
+@import "base/typography";
+@import "base/global";
+
+// ── Layout ───────────────────────────────────────────────────────────────────
+@import "layout/grid";
+@import "layout/section";
+@import "layout/header";
+@import "layout/footer";
+
+// Components and page styles are added in later sprints:
+// @import "components/buttons";
+// @import "pages/portfolio";

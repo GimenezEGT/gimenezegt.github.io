@@ -1,0 +1,19 @@
+---
+# Root layout — every other layout extends this.
+# Sets data-page-type (default: portfolio) so the palette/world is chosen in CSS.
+---
+<!DOCTYPE html>
+{% assign page_type = page.page_type | default: "portfolio" %}
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}" data-page-type="{{ page_type }}">
+{% include head.html %}
+<body data-page-type="{{ page_type }}">
+  {% include shared/skip-link.html %}
+  {% include header.html %}
+
+  <main id="main-content" class="site-main">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+</body>
+</html>

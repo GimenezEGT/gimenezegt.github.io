@@ -1,0 +1,79 @@
+// =============================================================================
+//  Global element styles — background, world transition, focus, scrollbar,
+//  selection, skip link, and the reduced-motion guard.
+// =============================================================================
+
+html {
+  background-color: var(--bg-primary);
+}
+
+body {
+  background-color: var(--bg-primary);
+  // Subtle world transition portfolio <-> blog (disabled under reduced motion).
+  transition: background-color var(--transition-base);
+}
+
+// Smooth in-page scrolling (CSS only). Disabled below under reduced motion.
+html {
+  scroll-behavior: smooth;
+}
+
+// ── Focus visibility (Constitution Principle III) ────────────────────────────
+:focus-visible {
+  outline: 2px solid var(--accent-secondary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+// ── Selection ────────────────────────────────────────────────────────────────
+::selection {
+  background: color-mix(in srgb, var(--accent-primary) 30%, transparent);
+  color: var(--text-primary);
+}
+
+// ── Scrollbar (Firefox + WebKit) ─────────────────────────────────────────────
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 6px;
+}
+
+// ── Skip link (first focusable element) ──────────────────────────────────────
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -3rem;
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: top var(--transition-base);
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+// ── Reduced-motion guard (Constitution Principle III) ────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

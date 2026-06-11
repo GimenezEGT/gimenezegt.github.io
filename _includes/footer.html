@@ -1,0 +1,17 @@
+<footer class="site-footer">
+  <div class="site-footer__inner container">
+    <p class="site-footer__copy">© {{ site.time | date: '%Y' }} {{ site.author }}</p>
+
+    {% if site.data.social and site.data.social.size > 0 %}
+    <ul class="site-footer__social" aria-label="Social and contact links">
+      {% for link in site.data.social %}
+        <li>
+          <a href="{{ link.url }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="me noopener"{% endunless %}>
+            {{ link.platform }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</footer>

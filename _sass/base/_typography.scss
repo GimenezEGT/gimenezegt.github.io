@@ -1,0 +1,76 @@
+// =============================================================================
+//  Global typography — all values from tokens (Constitution Principle IV)
+// =============================================================================
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); letter-spacing: 0.02em; text-transform: uppercase; }
+
+p,
+ul:not([class]),
+ol:not([class]) {
+  font-size: var(--text-base);
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration-color: color-mix(in srgb, var(--accent-primary) 45%, transparent);
+  text-underline-offset: 0.15em;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-primary) 80%, var(--text-primary));
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+:not(pre) > code {
+  background: var(--bg-elevated);
+  padding: 0.15em 0.4em;
+  border-radius: 0.3em;
+}
+
+blockquote {
+  border-left: 3px solid var(--accent-primary);
+  padding-left: var(--space-4);
+  color: var(--text-muted);
+}
+
+small,
+.text-muted {
+  color: var(--text-muted);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent-terminal);
+  letter-spacing: 0.04em;
+}
+
+.lead {
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+}

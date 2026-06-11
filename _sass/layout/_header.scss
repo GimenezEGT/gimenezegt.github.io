@@ -1,0 +1,39 @@
+// =============================================================================
+//  Site header / primary nav  (responsive hamburger arrives in Sprint 4)
+// =============================================================================
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background-color: color-mix(in srgb, var(--bg-primary) 92%, transparent);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+}
+
+.site-header__brand {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+}
+
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.site-nav__link {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.site-nav__link:hover,
+.site-nav__link[aria-current="page"] {
+  color: var(--accent-primary);
+}

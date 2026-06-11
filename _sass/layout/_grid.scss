@@ -1,0 +1,24 @@
+// =============================================================================
+//  Grid — 12-column helper for portfolio layouts
+// =============================================================================
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-6);
+}
+
+// Auto-fitting card grid used by project/post listings (3 → 2 → 1).
+.grid-auto {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+
+  @include respond-to("md") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to("lg") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

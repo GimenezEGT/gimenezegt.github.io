@@ -1,0 +1,12 @@
+# Social / contact links. Consumed by _includes/footer.html (and the contact
+# section in Sprint 2). Remove entries you don't use — the footer degrades
+# gracefully when this list is empty.
+- platform: "GitHub"
+  url: "https://github.com/enricogimenez"
+  icon: "github"
+- platform: "LinkedIn"
+  url: "https://www.linkedin.com/in/enricogimenez"
+  icon: "linkedin"
+- platform: "Email"
+  url: "mailto:enrico@example.com"
+  icon: "mail"

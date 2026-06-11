@@ -1,0 +1,14 @@
+---
+layout: base
+page_type: blog
+---
+<article class="post container-prose section">
+  <header class="post__header">
+    {% if page.title %}<h1 class="post__title">{{ page.title }}</h1>{% endif %}
+    {% comment %} Post meta (date · read time · tags) component is built in Sprint 3. {% endcomment %}
+  </header>
+
+  <div class="post__content">
+    {{ content }}
+  </div>
+</article>

@@ -1,0 +1,9 @@
+---
+layout: base
+page_type: blog
+---
+<div class="blog-index container-prose section">
+  {% if page.title %}<h1 class="blog-index__title">{{ page.title }}</h1>{% endif %}
+  {{ content }}
+  {% comment %} Post listing + tag filter are built in Sprint 3. {% endcomment %}
+</div>

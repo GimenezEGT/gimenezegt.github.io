@@ -1,0 +1,15 @@
+// =============================================================================
+//  Sass functions
+//  (Uses the global map-* functions to stay compatible with the @import-based
+//   architecture; $breakpoints is resolved at call time.)
+// =============================================================================
+
+// Look up a breakpoint value from the $breakpoints map by name.
+// Usage: @media (min-width: bp("md")) { ... }
+@function bp($name) {
+  @if map-has-key($breakpoints, $name) {
+    @return map-get($breakpoints, $name);
+  }
+  @warn "Unknown breakpoint `#{$name}` — check $breakpoints in abstracts/_variables.scss.";
+  @return null;
+}

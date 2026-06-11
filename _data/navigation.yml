@@ -1,0 +1,7 @@
+# Primary navigation links (ordered). Consumed by _includes/header.html.
+- name: "Projects"
+  url: "/#projects"
+- name: "Blog"
+  url: "/blog/"
+- name: "About"
+  url: "/about/"

@@ -1,0 +1,55 @@
+# ── Site identity ────────────────────────────────────────────────────────────
+title: "Enrico Gimenez"
+description: "Bioinformatics · Data Science · Molecular Biology"
+author: "Enrico Gimenez"
+url: "https://example.com"        # TODO: set to your custom domain (Sprint 7)
+baseurl: ""
+
+# ── URLs & content ───────────────────────────────────────────────────────────
+permalink: /blog/:categories/:title/
+timezone: America/Sao_Paulo
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Enrico Gimenez"
+      page_type: "blog"
+  - scope:
+      path: ""
+    values:
+      layout: "page"
+
+# ── Markdown & syntax highlighting ───────────────────────────────────────────
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# ── Sass ─────────────────────────────────────────────────────────────────────
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# ── Plugins ──────────────────────────────────────────────────────────────────
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate-v2
+
+# ── Build ────────────────────────────────────────────────────────────────────
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - scripts/
+  - README.md
+  - DEVELOPMENT_PLAN.md
+  - specs/
+  - .specify/
+  - .claude/
