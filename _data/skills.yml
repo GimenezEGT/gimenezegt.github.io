@@ -1,0 +1,28 @@
+# Skills grouped by category. Consumed by _includes/portfolio/skills.html.
+# Each item: name (required), level (basic|proficient|expert, optional),
+# icon (optional).
+- category: "Languages"
+  items:
+    - { name: "Python", level: "expert" }
+    - { name: "R", level: "proficient" }
+    - { name: "Bash", level: "proficient" }
+    - { name: "SQL", level: "basic" }
+
+- category: "Bioinformatics"
+  items:
+    - { name: "Snakemake", level: "expert" }
+    - { name: "Biopython", level: "proficient" }
+    - { name: "samtools / bcftools", level: "proficient" }
+    - { name: "Nextflow", level: "basic" }
+
+- category: "Data & Tools"
+  items:
+    - { name: "pandas / NumPy", level: "expert" }
+    - { name: "Git", level: "proficient" }
+    - { name: "Docker", level: "proficient" }
+
+- category: "Wet Lab"
+  items:
+    - { name: "PCR / qPCR", level: "expert" }
+    - { name: "NGS library prep", level: "proficient" }
+    - { name: "Cloning", level: "proficient" }

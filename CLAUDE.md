@@ -15,4 +15,6 @@ under `specs/`. Read the relevant plan before implementing a sprint:
 
 Source of truth for scope: `DEVELOPMENT_PLAN.md`. Next step per sprint:
 `/speckit-tasks` to generate `tasks.md`, then `/speckit-implement`.
+
+Active plan: `specs/002-portfolio-core/plan.md` (Sprint 2 — Portfolio Core).
 <!-- SPECKIT END -->

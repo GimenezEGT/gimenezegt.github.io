@@ -1,0 +1,13 @@
+# Author identity + about-panel facts. Consumed by the hero (FR-002) and the
+# about section (FR-006). Edit freely — templates read these, never hard-code.
+name: "Enrico Gimenez"
+tagline: "Molecular biologist building bioinformatics & data-science tools."
+bio: >
+  I'm a molecular biologist who codes. I build reproducible pipelines and
+  data tools that turn messy wet-lab and sequencing data into answers —
+  bridging the bench and the terminal.
+facts:
+  - { label: "based_in", value: "São Paulo, BR" }
+  - { label: "focus", value: "Bioinformatics · Data Science" }
+  - { label: "current", value: "Molecular Biology research" }
+  - { label: "stack", value: "Python · R · Snakemake" }

@@ -1,0 +1,73 @@
+// =============================================================================
+//  Cards — project card (FR-003, FR-005)
+//  Token-only. Featured variant gets an accent border + glow. Hover lift lives
+//  in pages/_portfolio.scss behind motion-safe.
+// =============================================================================
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--transition-base);
+}
+
+.card:hover {
+  border-color: color-mix(in srgb, var(--accent-primary) 50%, var(--border));
+}
+
+// Featured emphasis (FR-005).
+.card--featured {
+  border-color: color-mix(in srgb, var(--accent-primary) 60%, var(--border));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-primary) 25%, transparent);
+}
+
+// Media / placeholder — fixed ratio so missing images cause no layout shift.
+.card__media {
+  aspect-ratio: 16 / 9;
+  background: var(--bg-elevated);
+}
+.card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  color: var(--text-muted);
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+  padding: var(--space-6);
+}
+
+.card__title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.card__desc {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+// Actions pinned to the card bottom for an even grid.
+.card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}

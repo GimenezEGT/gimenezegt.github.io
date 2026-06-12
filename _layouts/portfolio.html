@@ -2,5 +2,13 @@
 layout: base
 page_type: portfolio
 ---
-{% comment %} Portfolio homepage shell. Section includes are added in Sprint 2. {% endcomment %}
+{%- comment -%}
+  Portfolio homepage shell — composes the five sections in order (FR-001).
+  Each section reads its own _data file so it is independently testable.
+{%- endcomment -%}
+{% include portfolio/hero.html %}
+{% include portfolio/about.html %}
+{% include portfolio/projects.html %}
+{% include portfolio/skills.html %}
+{% include portfolio/contact.html %}
 {{ content }}

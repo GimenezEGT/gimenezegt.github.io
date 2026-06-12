@@ -19,6 +19,10 @@
 @import "layout/header";
 @import "layout/footer";
 
-// Components and page styles are added in later sprints:
-// @import "components/buttons";
-// @import "pages/portfolio";
+// ── Components ───────────────────────────────────────────────────────────────
+@import "components/buttons";
+@import "components/cards";
+@import "components/tags";
+
+// ── Pages ────────────────────────────────────────────────────────────────────
+@import "pages/portfolio";

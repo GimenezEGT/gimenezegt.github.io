@@ -21,3 +21,6 @@ Thumbs.db
 
 # Claude Code — personal/local settings (permission grants); keep out of VC
 .claude/settings.local.json
+
+# oh-my-claudecode — local tool/session state; keep out of VC
+.omc/

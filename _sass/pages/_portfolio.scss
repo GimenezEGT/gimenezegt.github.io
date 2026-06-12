@@ -1,0 +1,186 @@
+// =============================================================================
+//  Portfolio homepage — section layout & rhythm (Sprint 2)
+//  Composes hero → about → projects → skills → contact (FR-001, FR-009).
+//  Tokens only. Smooth-scroll + reduced-motion are handled globally in
+//  base/_global.scss; this file adds only enhancement-level motion.
+// =============================================================================
+
+// ── Shared section intro (eyebrow + heading) ─────────────────────────────────
+.section__intro {
+  margin-bottom: var(--space-8);
+}
+.section__intro h2 {
+  margin: var(--space-2) 0 0;
+}
+
+// ── Hero (FR-002, SC-001) ────────────────────────────────────────────────────
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-4);
+  min-height: 70vh;
+}
+.hero__name {
+  margin: 0;
+  line-height: var(--leading-tight);
+}
+.hero__tagline {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--text-muted);
+}
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+// ── About (FR-006) ───────────────────────────────────────────────────────────
+.about__grid {
+  display: grid;
+  gap: var(--space-8);
+
+  @include respond-to("md") {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+  }
+}
+
+// Terminal-style key-facts panel (full chrome lands in Sprint 6).
+.terminal {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+.terminal__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--border);
+}
+.terminal__dot--danger { background: var(--accent-danger); }
+.terminal__dot--warn   { background: var(--accent-primary); }
+.terminal__dot--ok     { background: var(--accent-terminal); }
+.terminal__title {
+  margin-left: auto;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+.terminal__body {
+  margin: 0;
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.terminal__line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.terminal__line dt {
+  margin: 0;
+  color: var(--accent-terminal);
+}
+.terminal__line dd {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+// ── Projects (FR-003, FR-009, SC-003) ────────────────────────────────────────
+// auto-fill + minmax → natural 3/2/1 reflow, no media-query gymnastics.
+.projects__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+}
+
+// ── Skills (FR-007) ──────────────────────────────────────────────────────────
+.skills__grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+}
+.skills__group {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-6);
+}
+.skills__category {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-base);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-primary);
+}
+.skills__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.skills__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+.skills__item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.skills__level {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: lowercase;
+  color: var(--text-muted);
+}
+.skills__level--expert     { color: var(--accent-terminal); }
+.skills__level--proficient { color: var(--accent-secondary); }
+
+// ── Contact (FR-008) ─────────────────────────────────────────────────────────
+.contact__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+.contact__social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+// ── Enhancement-only motion (Constitution Principles I & III) ─────────────────
+@include motion-safe {
+  .card {
+    transition: border-color var(--transition-base), transform var(--transition-base);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+  }
+}

@@ -1,0 +1,31 @@
+{%- comment -%}
+  Contact (FR-008). Email action + social links from _data/social.yml (reused
+  from Sprint 1). The Email entry drives the primary action; the rest render as
+  external links.
+{%- endcomment -%}
+{%- assign email = site.data.social | where: "platform", "Email" | first -%}
+<section class="section contact" id="contact" aria-labelledby="contact-heading">
+  <div class="container contact__inner">
+    <p class="eyebrow"><span aria-hidden="true">&gt;_ </span>contact</p>
+    <h2 id="contact-heading">Get in touch</h2>
+    <p class="contact__lead text-muted">
+      Open to collaboration, roles, and interesting problems.
+    </p>
+
+    {% if email %}
+    <a class="btn btn--primary" href="{{ email.url }}">Email me</a>
+    {% endif %}
+
+    {% if site.data.social and site.data.social.size > 0 %}
+    <ul class="contact__social" aria-label="Social links">
+      {% for link in site.data.social %}
+      {% unless link.platform == "Email" %}
+      <li>
+        <a href="{{ link.url }}" target="_blank" rel="me noopener">{{ link.platform }}&nbsp;&#8599;</a>
+      </li>
+      {% endunless %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</section>

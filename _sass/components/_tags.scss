@@ -1,0 +1,23 @@
+// =============================================================================
+//  Tags — tech-stack pills (FR-003). Wrap inside cards without overflow.
+// =============================================================================
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1;
+  color: var(--accent-terminal);
+  background: color-mix(in srgb, var(--accent-terminal) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-terminal) 25%, transparent);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+}

@@ -1,0 +1,62 @@
+{%- comment -%}
+  Projects grid (FR-003, FR-004, FR-005). Featured entries first (stable), then
+  the rest in source order. Repo/demo links and cover image render only when
+  present; an empty data file shows a tasteful empty state.
+{%- endcomment -%}
+{%- assign featured = site.data.projects | where: "featured", true -%}
+{%- assign regular = site.data.projects | where_exp: "p", "p.featured != true" -%}
+{%- assign ordered = featured | concat: regular -%}
+<section class="section projects" id="projects" aria-labelledby="projects-heading">
+  <div class="container">
+    <div class="section__intro">
+      <p class="eyebrow"><span aria-hidden="true">&gt;_ </span>projects</p>
+      <h2 id="projects-heading">Projects</h2>
+    </div>
+
+    {% if ordered.size > 0 %}
+    <ul class="projects__grid">
+      {% for project in ordered %}
+      <li class="card{% if project.featured %} card--featured{% endif %}">
+        {% if project.image and project.image != "" %}
+        <div class="card__media">
+          <img src="{{ project.image | relative_url }}" alt="{{ project.title }} preview" loading="lazy">
+        </div>
+        {% else %}
+        <div class="card__media">
+          <span class="card__placeholder" aria-hidden="true">&lt;/&gt;</span>
+        </div>
+        {% endif %}
+
+        <div class="card__body">
+          <h3 class="card__title">{{ project.title }}</h3>
+          <p class="card__desc">{{ project.description }}</p>
+
+          {% if project.tags and project.tags.size > 0 %}
+          <ul class="tags">
+            {% for tag in project.tags %}<li class="tag">{{ tag }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+
+          {%- assign has_repo = false -%}
+          {%- if project.repo and project.repo != "" -%}{%- assign has_repo = true -%}{%- endif -%}
+          {%- assign has_demo = false -%}
+          {%- if project.demo and project.demo != "" -%}{%- assign has_demo = true -%}{%- endif -%}
+          {% if has_repo or has_demo %}
+          <div class="card__actions">
+            {% if has_repo %}
+            <a class="btn btn--ghost btn--sm" href="{{ project.repo }}" target="_blank" rel="noopener">Code&nbsp;&#8599;</a>
+            {% endif %}
+            {% if has_demo %}
+            <a class="btn btn--ghost btn--sm" href="{{ project.demo }}" target="_blank" rel="noopener">Demo&nbsp;&#8599;</a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted">Projects are on their way — check back soon.</p>
+    {% endif %}
+  </div>
+</section>

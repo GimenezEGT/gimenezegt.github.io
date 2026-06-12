@@ -70,16 +70,26 @@ A list of categories, each containing skills, rendered grouped by category.
 
 ## Entity: Profile facts (`_data/profile.yml` or page front matter)
 
-Short key/value facts for the about-section "terminal window" panel.
+Identity fields for the hero (FR-002) plus short key/value facts for the
+about-section "terminal window" panel.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
+| `name` | string | yes | Author name shown as the hero `<h1>` (FR-002). May instead come from `site.title` / `_config.yml author.name`. |
+| `tagline` | string | yes | One-line role tagline shown under the name in the hero (FR-002). May instead come from `_config.yml author.tagline`. |
 | `facts` | list of `{ label, value }` | yes | Key facts (location, focus, role, etc.). |
 | `bio` | string (markdown) | no | If set, overrides inline about copy. |
+
+> The hero's `name` + `tagline` are content, not markup (Constitution Principle
+> V). Author them in `_data/profile.yml` **or** `_config.yml` (`author.name`,
+> `author.tagline`) — pick one source and keep templates free of hard-coded
+> copy. The about panel and hero read from the same profile source.
 
 **Example**:
 
 ```yaml
+name: "Enrico Gimenez"
+tagline: "Molecular Biologist · Bioinformatics & Data Science"
 facts:
   - { label: "based_in", value: "São Paulo, BR" }
   - { label: "focus", value: "Bioinformatics · Data Science" }
