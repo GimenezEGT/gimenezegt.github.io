@@ -117,7 +117,9 @@ reduced-motion. The blog teaser reuses `post-card.html` so there is no new card.
    scroll class; loaded with `defer`. Track size against budget.
 3. **Transition + smooth scroll** — wire `_global.scss` and `base.html`.
 4. **Blog teaser** — `portfolio/blog-teaser.html`; style in `_portfolio.scss`;
-   include on `index.html`.
+   render it via a section slot in `_layouts/portfolio.html` (the homepage —
+   `index.html` is metadata-only, so the teaser is composed by the layout, not
+   added to `index.html`).
 5. **Cross-links** — add "read the write-up →" to project cards (when `post`
    present) and "back to portfolio" to `post.html`.
 6. **(Optional) pagination** — enable `jekyll-paginate-v2` on the blog index if
