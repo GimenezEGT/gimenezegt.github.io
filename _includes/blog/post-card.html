@@ -1,0 +1,20 @@
+{%- comment -%}
+  Blog index card (FR-006, FR-007, FR-008). Title, shared post-meta (date · read
+  time · tags), and an excerpt. The cover image is lazy-loaded (Constitution II)
+  and omitted gracefully when absent; the excerpt falls back to the body.
+{%- endcomment -%}
+{%- assign post = include.post -%}
+<li class="post-card card">
+  {%- if post.image and post.image != "" -%}
+  <a class="post-card__media card__media" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ post.image | relative_url }}" alt="" loading="lazy">
+  </a>
+  {%- endif -%}
+  <div class="card__body">
+    <h2 class="post-card__title card__title">
+      <a class="post-card__link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h2>
+    {% include blog/post-meta.html post=post show_tags=true %}
+    <p class="post-card__excerpt card__desc">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+  </div>
+</li>

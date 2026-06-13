@@ -1,0 +1,27 @@
+{%- comment -%}
+  Post metadata — the single reusable component (FR-008). Consumed by both the
+  index card (blog/post-card.html) and the post header (_layouts/post.html).
+
+  Params:
+    post       — the post object (a site.posts entry, or `page` on a post layout).
+    show_tags  — when truthy, append the tag pills (cards do; the post header
+                 omits them because the post footer renders tags per the spec).
+
+  Derived (data-model.md):
+    display_date — "%B %-d, %Y"  → "June 11, 2026"
+    read_time    — ceil(words / 200), minimum 1 → "X min read"
+{%- endcomment -%}
+{%- assign post = include.post -%}
+{%- assign words = post.content | strip_html | number_of_words -%}
+{%- assign read_time = words | divided_by: 200.0 | ceil -%}
+{%- if read_time < 1 -%}{%- assign read_time = 1 -%}{%- endif -%}
+<div class="post-meta">
+  <time class="post-meta__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+  <span class="post-meta__sep" aria-hidden="true">&middot;</span>
+  <span class="post-meta__readtime">{{ read_time }} min read</span>
+  {%- if include.show_tags and post.tags and post.tags.size > 0 -%}
+  <ul class="tags post-meta__tags">
+    {%- for tag in post.tags -%}<li class="tag">{{ tag }}</li>{%- endfor -%}
+  </ul>
+  {%- endif -%}
+</div>

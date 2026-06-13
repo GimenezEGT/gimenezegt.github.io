@@ -1,0 +1,193 @@
+// =============================================================================
+//  Blog pages — index + individual post (FR-001, FR-003, FR-006, FR-008, FR-009)
+//
+//  The blog "world" (serif headings, warmer palette, narrower column) comes from
+//  the [data-page-type="blog"] token overrides in abstracts/_variables.scss plus
+//  the .container-prose wrapper (layout/_section.scss). This file adds the blog
+//  index list, post-card, post prose rhythm, post-meta row, and back links.
+//  Token-only (Constitution Principle IV); reduced-motion safe.
+// =============================================================================
+
+// ── Shared: post-meta row (FR-008, used by cards + post header) ───────────────
+.post-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.post-meta__date,
+.post-meta__readtime {
+  white-space: nowrap;
+}
+
+.post-meta__sep {
+  color: var(--border);
+}
+
+// Tags sit on the same row but may wrap to the next line on narrow widths.
+.post-meta__tags {
+  flex-basis: 100%;
+  margin-top: var(--space-1);
+}
+
+// ── Blog index ────────────────────────────────────────────────────────────────
+.blog-index__header {
+  margin-bottom: var(--space-12);
+}
+
+.blog-index__title {
+  margin: 0 0 var(--space-2);
+}
+
+.blog-index__list {
+  display: grid;
+  gap: var(--space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.blog-index__empty {
+  font-family: var(--font-mono);
+}
+
+// ── Post card ───────────────────────────────────────────────────────────────
+.post-card .card__body {
+  gap: var(--space-2);
+}
+
+.post-card__title {
+  font-size: var(--text-2xl);
+}
+
+.post-card__link {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.post-card__link:hover,
+.post-card__link:focus-visible {
+  color: var(--accent-primary);
+}
+
+.post-card__excerpt {
+  margin-top: var(--space-1);
+}
+
+// Make the card media keep the shared 16/9 ratio with no layout shift.
+.post-card__media {
+  display: block;
+}
+
+// ── Individual post ───────────────────────────────────────────────────────────
+.post__header {
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-6);
+}
+
+.post__title {
+  margin: 0 0 var(--space-4);
+  line-height: var(--leading-tight);
+}
+
+// Prose rhythm for the rendered Markdown body (FR-003).
+.post__content {
+  line-height: var(--leading-base);
+}
+
+.post__content > * + * {
+  margin-top: var(--space-6);
+}
+
+.post__content h2 {
+  margin-top: var(--space-12);
+  font-size: var(--text-2xl);
+}
+
+.post__content h3 {
+  margin-top: var(--space-8);
+  font-size: var(--text-xl);
+}
+
+.post__content ul:not([class]),
+.post__content ol:not([class]) {
+  padding-left: var(--space-6);
+}
+
+.post__content li + li {
+  margin-top: var(--space-2);
+}
+
+.post__content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+// Figure caption support (FR-003).
+.post__content figure {
+  margin-inline: 0;
+}
+.post__content figcaption {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.post__content blockquote {
+  font-style: italic;
+}
+
+// Tables — scroll horizontally on narrow screens without breaking layout.
+.post__content table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.post__content th,
+.post__content td {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.post__content th {
+  background: var(--bg-surface);
+}
+
+// ── Post footer: tags + back links (FR-005) ───────────────────────────────────
+.post__footer {
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.post__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+// Subtle "back to portfolio" link — quieter than the primary "back to blog" btn.
+.post__home-link {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+.post__home-link:hover,
+.post__home-link:focus-visible {
+  color: var(--accent-primary);
+}

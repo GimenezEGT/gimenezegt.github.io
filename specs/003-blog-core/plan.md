@@ -47,7 +47,7 @@ syntax theme, 1 page stylesheet, 1–2 sample posts
 | II. Performance Budget Is a Gate | ✅ Pass | Highlighting is build-time (Rouge); images lazy-loaded; no client JS. |
 | III. Accessibility by Default | ✅ Pass | Semantic `<article>`, heading order, readable contrast for code theme, focusable cards. |
 | IV. Single-Source Dual-Palette Design System | ✅ Pass | Blog world via `data-page-type`; syntax theme uses palette tokens. |
-| V. Content-First & Data-Driven | ✅ Pass | Posts are Markdown + front matter; SEO/structured data per post. |
+| V. Content-First & Data-Driven | ✅ Pass | Posts are Markdown + front matter; graceful degradation for optional front matter. Per-post SEO/JSON-LD (BlogPosting) is delivered by Sprint 7's launch gate, not this sprint. |
 
 **Result**: PASS. Note: the code theme MUST be contrast-verified (token values,
 not component overrides) before locking.

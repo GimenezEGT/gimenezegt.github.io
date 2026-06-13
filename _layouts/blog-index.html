@@ -3,7 +3,18 @@ layout: base
 page_type: blog
 ---
 <div class="blog-index container-prose section">
-  {% if page.title %}<h1 class="blog-index__title">{{ page.title }}</h1>{% endif %}
+  <header class="blog-index__header">
+    {% if page.title %}<h1 class="blog-index__title">{{ page.title }}</h1>{% endif %}
+    {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
+  </header>
+
   {{ content }}
-  {% comment %} Post listing + tag filter are built in Sprint 3. {% endcomment %}
+
+  {% if site.posts.size > 0 %}
+  <ul class="blog-index__list">
+    {% for post in site.posts %}{% include blog/post-card.html post=post %}{% endfor %}
+  </ul>
+  {% else %}
+  <p class="blog-index__empty text-muted">No posts yet — the first article is brewing. Check back soon.</p>
+  {% endif %}
 </div>

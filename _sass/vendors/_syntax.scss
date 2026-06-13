@@ -1,0 +1,51 @@
+// =============================================================================
+//  Rouge syntax theme — dark, palette-driven (FR-004, SC-003)
+//
+//  Foreground colours map to design tokens (amber / green / blue / muted) so the
+//  theme re-themes with the blog world and stays a single source of truth
+//  (Constitution Principle IV). All foregrounds are chosen to meet contrast
+//  >= 4.5:1 on --bg-elevated (the code container background, T023 verifies).
+//
+//  The container chrome (terminal bar, padding, scroll) lives in
+//  components/_code-blocks.scss; this file only colours tokens.
+// =============================================================================
+
+.highlight {
+  color: var(--text-primary);
+
+  // Comments — muted, italic.
+  .c, .cd, .cm, .c1, .cs { color: var(--text-muted); font-style: italic; }
+
+  // Keywords & operators — amber.
+  .k, .kc, .kd, .kn, .kp, .kr, .kt, .o, .ow { color: var(--accent-primary); }
+
+  // Strings — terminal green.
+  .s, .sb, .sc, .sd, .s1, .s2, .se, .sh, .si, .sx, .sr, .ss, .dl { color: var(--accent-terminal); }
+
+  // Numbers & constants — softer blue.
+  .m, .mf, .mh, .mi, .il, .mo, .mb, .mx { color: var(--accent-secondary); }
+
+  // Function & class names — blue, slightly emphasised.
+  .nf, .fm, .nc, .nn { color: var(--accent-secondary); }
+
+  // Built-ins, tags, decorators — amber.
+  .nb, .bp, .nt, .nd { color: var(--accent-primary); }
+
+  // Variables, attributes, identifiers — primary text.
+  .n, .na, .nv, .vc, .vg, .vi, .nl, .py { color: var(--text-primary); }
+
+  // Punctuation — slightly muted from primary.
+  .p, .pi { color: color-mix(in srgb, var(--text-primary) 75%, transparent); }
+
+  // Diff / VCS.
+  .gd { color: var(--accent-danger); }
+  .gi { color: var(--accent-terminal); }
+  .gh { color: var(--accent-secondary); font-weight: 600; }
+  .gu { color: var(--accent-primary); }
+
+  // Errors.
+  .err { color: var(--accent-danger); }
+
+  // Line-number gutter, if Rouge emits a table.
+  .gl, .lineno { color: var(--text-muted); user-select: none; }
+}

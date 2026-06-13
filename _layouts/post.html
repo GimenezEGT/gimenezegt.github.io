@@ -5,10 +5,26 @@ page_type: blog
 <article class="post container-prose section">
   <header class="post__header">
     {% if page.title %}<h1 class="post__title">{{ page.title }}</h1>{% endif %}
-    {% comment %} Post meta (date · read time · tags) component is built in Sprint 3. {% endcomment %}
+    {% include blog/post-meta.html post=page %}
   </header>
 
+  {% include blog/toc.html %}
+
   <div class="post__content">
-    {{ content }}
+    {{ content | replace: '<img ', '<img loading="lazy" ' }}
   </div>
+
+  <footer class="post__footer">
+    {% if page.tags and page.tags.size > 0 %}
+    <ul class="tags post__tags">
+      {% for tag in page.tags %}<li class="tag">{{ tag }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    <div class="post__nav">
+      <a class="btn btn--ghost btn--sm" href="{{ '/blog/' | relative_url }}">&#8592;&nbsp;Back to blog</a>
+      <a class="post__home-link" href="{{ '/' | relative_url }}">Back to portfolio</a>
+    </div>
+  </footer>
+
+  {% include blog/related-posts.html %}
 </article>

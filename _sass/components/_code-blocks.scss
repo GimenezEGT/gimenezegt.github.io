@@ -1,0 +1,68 @@
+// =============================================================================
+//  Code blocks — terminal-styled container (FR-004, FR-010)
+//
+//  Wraps Rouge output (kramdown emits `.language-x.highlighter-rouge > .highlight
+//  > pre.highlight > code`). Chrome is pure CSS: elevated background, a top bar
+//  with three "traffic-light" dots, and horizontal scroll for long lines so the
+//  page layout never breaks. No JavaScript; the copy-to-clipboard button is a
+//  Sprint 5 enhancement that layers onto this same container.
+//
+//  Token-only (Constitution Principle IV). Reduced-motion safe (no motion here).
+// =============================================================================
+
+.highlighter-rouge {
+  position: relative;
+  margin-block: var(--space-6);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+
+  // Terminal title bar.
+  &::before {
+    content: "";
+    display: block;
+    height: var(--space-8);
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  // Three traffic-light dots, painted onto the bar via box-shadow.
+  &::after {
+    content: "";
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-4);
+    width: var(--space-3);
+    height: var(--space-3);
+    border-radius: 50%;
+    background: var(--accent-danger);
+    box-shadow:
+      var(--space-6) 0 0 var(--accent-primary),
+      var(--space-12) 0 0 var(--accent-terminal);
+  }
+}
+
+// Rouge wrapper resets.
+.highlighter-rouge .highlight {
+  margin: 0;
+  background: transparent;
+}
+
+// The scrolling code surface.
+.highlighter-rouge pre.highlight,
+.highlighter-rouge .highlight pre {
+  margin: 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-base);
+  tab-size: 2;
+}
+
+.highlighter-rouge code {
+  font-family: inherit;
+  background: none;
+  padding: 0;
+}
