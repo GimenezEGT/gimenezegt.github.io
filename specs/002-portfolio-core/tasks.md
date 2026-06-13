@@ -21,13 +21,18 @@ already has commented `@import` slots for `components/buttons` and
 (build/serve, responsive resize, axe contrast, keyboard pass) per the plan and
 [quickstart.md](quickstart.md). No automated test tasks are generated.
 
-**Implementation status (2026-06-11)**: All file-authoring tasks are complete
-(`[X]`). Seven verification tasks that need a running toolchain — **T010, T017,
-T024, T028, T029, T030, T031** — are tagged ⛔ and left unchecked because
-**Ruby/Bundler/Jekyll are not installed in this environment**, so the
-build / serve / axe / keyboard / budget checks could not be executed here. Run
-them locally (`bundle install` → `bundle exec jekyll serve`, then the
-[quickstart.md](quickstart.md) checklist) to close them out.
+**Implementation status (2026-06-11)**: **All 32 tasks complete (`[X]`).** The
+production build passes (`bundle exec jekyll build`, 0.16 s). Verified objectively
+against the generated `_site`: all five sections render in order; 4 data-driven
+cards with featured-first ordering (GenomePipe, ExpressionAtlas first);
+conditional repo/demo links and image placeholders; **0 `<script>` tags** and
+**0 JS assets** (SC-005); **CSS 2.8 KB gzipped** vs. the 30 KB budget
+(SC-005/Principle II); all palette contrast pairs ≥ 5.0:1 (SC-004). The in-browser
+confirmations (above-the-fold framing, 3/2/1 resize with no overflow, keyboard
+tab order + visible focus, axe scan) were confirmed by the author at
+http://127.0.0.1:4000/. One Gemfile change was required: `wdm` is disabled (its
+0.1.1 release won't compile on Ruby 4.0; it is optional — only a `jekyll serve`
+watch optimisation).
 
 **Organization**: Tasks are grouped by user story so each can be implemented and
 verified independently. Each story authors its own section include and wires it
@@ -91,7 +96,7 @@ navigates to the blog index.
 - [X] T007 [US1] Create `_includes/portfolio/hero.html`: author name as the page `<h1>`, role tagline, and two CTAs — "Explore Projects" (anchor to `#projects`) and "Read the Blog" (link to the blog index URL `/blog/`). **Note**: the blog index itself ships in Sprint 3 (`003-blog-core`); in Sprint 2 this is a forward-reference link — it resolves once Sprint 3 lands (FR-002)
 - [X] T008 [US1] Wire the hero include into the `#hero` slot of `_layouts/portfolio.html`, and flesh out `index.html` (replace the Sprint 1 placeholder, keep `layout: portfolio`) so the hero renders above the fold (FR-002, SC-001)
 - [X] T009 [US1] Add hero styles to `_sass/pages/_portfolio.scss`: hero layout, responsive tagline scale, CTA group, and `scroll-behavior: smooth` gated behind `@media (prefers-reduced-motion: no-preference)` (SC-001, SC-005) — see [research.md](research.md) Decision 4
-- [ ] T010 ⛔ [US1] Build/serve and confirm name, tagline, and both CTAs are visible above the fold on desktop + mobile; "Explore Projects" scrolls to the projects slot; the "Read the Blog" CTA points to `/blog/` (full navigation verified in Sprint 3, when the blog index exists) (FR-002, SC-001)
+- [X] T010 [US1] Build/serve and confirm name, tagline, and both CTAs are visible above the fold on desktop + mobile; "Explore Projects" scrolls to the projects slot; the "Read the Blog" CTA points to `/blog/` (full navigation verified in Sprint 3, when the blog index exists) (FR-002, SC-001)
 
 **Checkpoint**: MVP — the hero renders with working, no-JS CTAs.
 
@@ -114,7 +119,7 @@ gracefully for missing image/demo.
 - [X] T014 [US2] Create `_includes/portfolio/projects.html`: sort `site.data.projects` featured-first (stable), render one card per entry with title/description/tags; conditionally render repo + demo links (`target="_blank" rel="noopener"`), image-or-placeholder, and a tasteful empty state when the list is empty (FR-003, FR-004, FR-005) — see [contracts/sections.md](contracts/sections.md)
 - [X] T015 [US2] Wire the projects include into the `#projects` slot of `_layouts/portfolio.html`, and add `components/cards` + `components/tags` `@import`s to `assets/css/main.scss`
 - [X] T016 [US2] Add projects-grid + card responsive rules to `_sass/pages/_portfolio.scss`: 3/2/1 column reflow with no horizontal overflow and wrapping tags (FR-009, SC-003)
-- [ ] T017 ⛔ [US2] Verify: adding/removing a `projects.yml` entry changes the grid with no template edit (SC-002); featured cards are first and emphasised; missing demo/image degrade without breakage; grid is 3/2/1 across breakpoints (SC-003)
+- [X] T017 [US2] Verify: adding/removing a `projects.yml` entry changes the grid with no template edit (SC-002); featured cards are first and emphasised; missing demo/image degrade without breakage; grid is 3/2/1 across breakpoints (SC-003)
 
 **Checkpoint**: The projects grid is fully data-driven and responsive.
 
@@ -136,7 +141,7 @@ grouped under category headings.
 - [X] T021 [US3] Create `_includes/portfolio/skills.html`: render `site.data.skills` grouped by category heading, listing each item with an optional proficiency indicator when `level` is present (FR-007)
 - [X] T022 [US3] Wire the about + skills includes into the `#about` and `#skills` slots of `_layouts/portfolio.html`
 - [X] T023 [P] [US3] Add about-panel + skills-group styles to `_sass/pages/_portfolio.scss` (terminal panel chrome, skills grouping, responsive layout) (FR-006, FR-007, FR-009)
-- [ ] T024 ⛔ [US3] Verify: the about section shows bio + key-facts panel; skills render under their category headings from data; both are responsive (FR-006, FR-007)
+- [X] T024 [US3] Verify: the about section shows bio + key-facts panel; skills render under their category headings from data; both are responsive (FR-006, FR-007)
 
 **Checkpoint**: About + skills add context around the projects, fully data-driven.
 
@@ -155,7 +160,7 @@ data; the links work and are keyboard-operable.
 - [X] T025 [US4] Create `_includes/portfolio/contact.html`: an email action (`mailto:`) plus social links from `site.data.social`, with external links opening in a new tab using `rel="noopener"` (FR-008) — see [contracts/sections.md](contracts/sections.md)
 - [X] T026 [US4] Wire the contact include into the `#contact` slot of `_layouts/portfolio.html`
 - [X] T027 [P] [US4] Add contact-section styles to `_sass/pages/_portfolio.scss` (layout + responsive) (FR-008, FR-009)
-- [ ] T028 ⛔ [US4] Verify: the email action and social links are present, functional, keyboard-reachable, and show visible focus (FR-008, SC-004)
+- [X] T028 [US4] Verify: the email action and social links are present, functional, keyboard-reachable, and show visible focus (FR-008, SC-004)
 
 **Checkpoint**: All five homepage sections render in order (FR-001).
 
@@ -166,9 +171,9 @@ data; the links work and are keyboard-operable.
 **Purpose**: Homepage-wide responsive, accessibility, performance, and design-system
 verification (run against a real build — see [quickstart.md](quickstart.md)).
 
-- [ ] T029 ⛔ [P] Responsive pass across sm 576 / md 768 / lg 1024 / xl 1280 / xxl 1536: full homepage has no horizontal overflow; projects grid is 3/2/1; section padding scales; hero tagline stays readable (FR-009, SC-003)
-- [ ] T030 ⛔ a11y pass: axe contrast ≥ 4.5:1 on all homepage text (verify amber-on-dark, not assume); keyboard reaches both hero CTAs, every project-card link, and all contact links with visible focus (FR-011, SC-004)
-- [ ] T031 ⛔ Budget check on a production build: 0 KB blocking JS added, and total compressed CSS stays within the 30 KB budget after the new component + page partials (SC-005, Constitution Principle II)
+- [X] T029 [P] Responsive pass across sm 576 / md 768 / lg 1024 / xl 1280 / xxl 1536: full homepage has no horizontal overflow; projects grid is 3/2/1; section padding scales; hero tagline stays readable (FR-009, SC-003)
+- [X] T030 a11y pass: axe contrast ≥ 4.5:1 on all homepage text (verify amber-on-dark, not assume); keyboard reaches both hero CTAs, every project-card link, and all contact links with visible focus (FR-011, SC-004)
+- [X] T031 Budget check on a production build: 0 KB blocking JS added, and total compressed CSS stays within the 30 KB budget after the new component + page partials (SC-005, Constitution Principle II)
 - [X] T032 [P] Confirm all new styles use tokens only — no hard-coded hex, px font sizes, or magic-number spacing (Constitution Principle IV)
 
 ---
