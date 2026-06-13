@@ -14,8 +14,18 @@
   transition: border-color var(--transition-base);
 }
 
-.card:hover {
+// Hover accent — pointer devices only (FR-006), so touch taps don't stick.
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    border-color: color-mix(in srgb, var(--accent-primary) 50%, var(--border));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-primary) 20%, transparent);
+  }
+}
+
+// Keyboard-equivalent: when a control inside the card is focused (FR-006, III).
+.card:focus-within {
   border-color: color-mix(in srgb, var(--accent-primary) 50%, var(--border));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-primary) 20%, transparent);
 }
 
 // Featured emphasis (FR-005).

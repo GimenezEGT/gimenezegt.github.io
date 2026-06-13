@@ -1,0 +1,9 @@
+{%- comment -%}
+  Back-to-top control (FR-005). A plain anchor to #main-content so it works with
+  JS off (it simply jumps to the top of the content). With JS, main.js reveals it
+  past a scroll threshold and smooth-scrolls, honouring prefers-reduced-motion.
+{%- endcomment -%}
+<a class="scroll-top" href="#main-content" data-scroll-top>
+  <span class="scroll-top__icon" aria-hidden="true">&#8593;</span>
+  <span class="visually-hidden">Back to top</span>
+</a>

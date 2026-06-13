@@ -12,6 +12,17 @@
 (function () {
   "use strict";
 
+  // ---- Shared reduced-motion helper ---------------------------------------
+  // Exposed for portfolio.js / blog.js (defer order guarantees main.js runs
+  // first). One source of truth for the prefers-reduced-motion gate.
+  var motionQuery = window.matchMedia
+    ? window.matchMedia("(prefers-reduced-motion: reduce)")
+    : null;
+  window.Site = window.Site || {};
+  window.Site.prefersReducedMotion = function () {
+    return !!(motionQuery && motionQuery.matches);
+  };
+
   var header = document.querySelector("[data-header]");
   var toggle = document.querySelector("[data-nav-toggle]");
   var checkbox = document.getElementById("nav-toggle");
@@ -95,5 +106,42 @@
       },
       { passive: true }
     );
+  }
+
+  // ---- Scroll-to-top control (FR-005) -------------------------------------
+  // The control is an anchor to #main-content (works with JS off). With JS we
+  // reveal it past a threshold (transform/opacity → no CLS) and smooth-scroll,
+  // honouring reduced motion, then move focus to the top for keyboard users.
+  var scrollTop = document.querySelector("[data-scroll-top]");
+  if (scrollTop) {
+    var THRESHOLD = 600;
+    var stTicking = false;
+    function toggleScrollTop() {
+      scrollTop.classList.toggle("is-visible", window.scrollY > THRESHOLD);
+      stTicking = false;
+    }
+    toggleScrollTop();
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!stTicking) {
+          stTicking = true;
+          window.requestAnimationFrame(toggleScrollTop);
+        }
+      },
+      { passive: true }
+    );
+    scrollTop.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: window.Site.prefersReducedMotion() ? "auto" : "smooth"
+      });
+      var main = document.getElementById("main-content");
+      if (main) {
+        main.setAttribute("tabindex", "-1");
+        main.focus({ preventScroll: true });
+      }
+    });
   }
 })();

@@ -83,6 +83,64 @@
   display: block;
 }
 
+// ── Table of contents (FR-002) ────────────────────────────────────────────────
+// Server-rendered anchor list; blog.js adds active tracking. Collapsible on
+// small screens via <details>; on desktop the disclosure is always open and the
+// summary is hidden. Non-colour-only active cue (left border + weight).
+.post-toc {
+  margin-bottom: var(--space-8);
+  font-size: var(--text-sm);
+}
+
+.post-toc__summary {
+  font-family: var(--font-mono);
+  color: var(--accent-primary);
+  cursor: pointer;
+  padding-block: var(--space-1);
+}
+
+.post-toc__list {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  border-left: 1px solid var(--border);
+}
+
+.post-toc__item a {
+  display: block;
+  margin-left: -1px;
+  padding: var(--space-1) var(--space-4);
+  border-left: 2px solid transparent;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.post-toc__item--h3 a {
+  padding-left: var(--space-8);
+  font-size: var(--text-xs);
+}
+
+.post-toc__item a:hover,
+.post-toc__item a:focus-visible {
+  color: var(--text-primary);
+}
+
+.post-toc__item a[aria-current] {
+  color: var(--accent-primary);
+  border-left-color: var(--accent-primary);
+  font-weight: 600;
+}
+
+@include respond-to("lg") {
+  // Desktop: the list is always shown; the collapse summary is unneeded.
+  .post-toc__summary {
+    display: none;
+  }
+}
+
 // ── Individual post ───────────────────────────────────────────────────────────
 .post__header {
   margin-bottom: var(--space-8);

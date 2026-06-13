@@ -11,6 +11,13 @@
         href="{{ '/feed.xml' | relative_url }}" title="{{ site.title }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
 
-  {%- comment -%} Shared progressive-enhancement JS (menu, nav-on-scroll). Deferred; never blocks paint. {%- endcomment -%}
+  {%- comment -%} Shared progressive-enhancement JS (menu, nav-on-scroll, scroll-top). Deferred; never blocks paint. {%- endcomment -%}
   <script defer src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  {%- comment -%} Per-world modules: each page ships only what it needs (FR-009). {%- endcomment -%}
+  {%- assign world = page.page_type | default: "portfolio" -%}
+  {%- if world == "blog" -%}
+  <script defer src="{{ '/assets/js/blog.js' | relative_url }}"></script>
+  {%- else -%}
+  <script defer src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
+  {%- endif -%}
 </head>

@@ -1,0 +1,42 @@
+// =============================================================================
+//  Cursor blink (FR-007) — terminal caret on the hero tagline and the `.eyebrow`
+//  `>_` section markers (the designated "terminal" headers). Pure CSS; the blink
+//  only runs when motion is allowed (Constitution Principle III). Token-only.
+// =============================================================================
+
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+// Hero typing caret — added by portfolio.js (no caret with JS off / reduced
+// motion, since the typing classes are never applied there).
+.hero__tagline.is-typing::after,
+.hero__tagline.is-typed::after {
+  content: "";
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.1em;
+  margin-left: 0.15ch;
+  vertical-align: text-bottom;
+  background: var(--accent-terminal);
+}
+
+// Terminal section markers get a steady caret; it blinks only when motion is on.
+.eyebrow::after {
+  content: "_";
+  color: var(--accent-terminal);
+}
+
+@include motion-safe {
+  .hero__tagline.is-typed::after,
+  .eyebrow::after {
+    animation: cursor-blink 1.05s step-end infinite;
+  }
+}

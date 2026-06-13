@@ -97,9 +97,12 @@ JS only adds copy, TOC tracking, tag filter, typing, and scroll-top.
 - **Copy-to-clipboard** — Decision: `navigator.clipboard.writeText`; on absence,
   fall back to a hidden `<textarea>` + `execCommand` or hide the button. Inject
   buttons at runtime so JS-off blocks have none (FR-001 edge case).
-- **TOC tracking** — Decision: build the list from `h2/h3` in the article;
-  `IntersectionObserver` toggles the active item. Without JS the include still
-  outputs an anchor list (FR-002). Skip when < 2 headings.
+- **TOC tracking** — Decision: the anchor list is **server-rendered** by the
+  `blog/toc.html` include (Liquid scans the post `content` for kramdown's
+  auto-`id`d `h2`/`h3` and emits `<a href="#id">` items), so it is a working list
+  with JS off (FR-002). JS **only layers** active-item tracking
+  (`IntersectionObserver`) onto that existing list — it never builds it. Wrapped in
+  a `<details>` for a no-JS collapse on small screens. Skip when < 2 headings.
 - **Tag filter** — Decision: cards carry `data-tags`; clicking a tag toggles a
   visibility class via JS over the rendered list (no reload). Without JS, tags are
   plain links and all posts show (FR-003). Empty result → empty-state message.
@@ -107,7 +110,11 @@ JS only adds copy, TOC tracking, tag filter, typing, and scroll-top.
   no-JS/reduced-motion fallback); JS reveals it character-by-character only when
   motion is allowed (FR-004).
 - **Cursor blink & hover** — Decision: pure CSS `@keyframes`, both inside
-  reduced-motion guards (FR-007/006).
+  reduced-motion guards (FR-007/006). The "terminal" headers of FR-007 are the
+  **existing `.eyebrow` `>_` section markers** (hero/projects/etc.); no new markup
+  is introduced. Card hover is additionally gated to pointer devices
+  (`@media (hover: hover)`/`(pointer: fine)`) with a `:focus-visible` equivalent
+  for keyboard users (FR-006).
 - **Scroll-to-top** — Decision: show after a scroll threshold (transform-based to
   avoid CLS); `scrollTo` respecting reduced-motion (FR-005).
 - **Budget control** — Decision: measure gzipped JS after each behaviour; CSS-first

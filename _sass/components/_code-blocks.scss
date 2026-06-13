@@ -66,3 +66,35 @@
   background: none;
   padding: 0;
 }
+
+// ── Copy-to-clipboard button (FR-001) ────────────────────────────────────────
+// Injected by blog.js into the terminal title bar; absent with JS off. Absolute
+// so it never shifts the code layout (no CLS). Token-only, reduced-motion safe.
+.code-copy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  height: var(--space-8); // matches the ::before title-bar height
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  border-left: 1px solid var(--border);
+  cursor: pointer;
+  transition: color var(--transition-base), background-color var(--transition-base);
+}
+
+.code-copy:hover,
+.code-copy:focus-visible {
+  color: var(--accent-terminal);
+  background: var(--bg-elevated);
+}
+
+.code-copy.is-copied {
+  color: var(--accent-terminal);
+}

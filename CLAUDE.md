@@ -16,8 +16,14 @@ under `specs/`. Read the relevant plan before implementing a sprint:
 Source of truth for scope: `DEVELOPMENT_PLAN.md`. Next step per sprint:
 `/speckit-tasks` to generate `tasks.md`, then `/speckit-implement`.
 
-Active plan: `specs/004-navigation-bridge/plan.md` (Sprint 4 — Navigation &
-Bridge; first sprint with JS). Next: Sprint 5 (`005-interactivity-polish`) —
-copy-to-clipboard, sticky TOC, tag filter, hero typing, scroll-to-top build on
-this nav/JS base.
+Active plan: `specs/005-interactivity-polish/plan.md` (Sprint 5 — Interactivity &
+Polish; complete). Delivered: copy-to-clipboard, server-rendered TOC with
+IntersectionObserver active-tracking, client-side blog tag filter, hero typing,
+CSS cursor blink, scroll-to-top, and pointer-gated card hover — all `defer`/CSS
+progressive enhancements over a no-JS baseline. Per-page JS now split across
+`main.js` (shared: menu, nav-on-scroll, reduced-motion helper, scroll-top),
+`portfolio.js` (hero typing), and `blog.js` (copy, TOC, tag filter); loaded
+page-conditionally from `head.html`. Per-page JS ≤ 3.4 KB gz (budget 10 KB).
+Next: Sprint 6 (`006-motifs-identity`) — DNA helix, terminal headers, hex skills
+grid, organic dividers, building on this CSS/JS base.
 <!-- SPECKIT END -->

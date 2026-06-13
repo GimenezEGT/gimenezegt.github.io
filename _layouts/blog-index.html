@@ -11,9 +11,25 @@ page_type: blog
   {{ content }}
 
   {% if site.posts.size > 0 %}
+  {% if site.tags.size > 0 %}
+  {%- comment -%}
+    Client-side tag filter (FR-003). Controls are real links to /blog/, so with
+    JS off they are harmless (a click just reloads the full index). blog.js
+    intercepts the clicks and filters the rendered cards without a reload.
+  {%- endcomment -%}
+  <div class="tag-filter" data-tag-filter aria-label="Filter posts by tag">
+    <span class="tag-filter__label" aria-hidden="true">&gt;_ filter</span>
+    <a class="tag-filter__btn is-active" href="{{ '/blog/' | relative_url }}" data-tag="" aria-current="true">All</a>
+    {% for tag in site.tags %}
+    <a class="tag-filter__btn" href="{{ '/blog/' | relative_url }}" data-tag="{{ tag[0] }}">{{ tag[0] }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
   <ul class="blog-index__list">
     {% for post in site.posts %}{% include blog/post-card.html post=post %}{% endfor %}
   </ul>
+  <p class="blog-index__empty text-muted" data-filter-empty hidden>No posts match that tag. <a href="{{ '/blog/' | relative_url }}">Show all posts</a>.</p>
   {% else %}
   <p class="blog-index__empty text-muted">No posts yet — the first article is brewing. Check back soon.</p>
   {% endif %}

@@ -4,7 +4,7 @@
   and omitted gracefully when absent; the excerpt falls back to the body.
 {%- endcomment -%}
 {%- assign post = include.post -%}
-<li class="post-card card">
+<li class="post-card card" data-tags="{{ post.tags | join: ' ' }}">
   {%- if post.image and post.image != "" -%}
   <a class="post-card__media card__media" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
     <img src="{{ post.image | relative_url }}" alt="" loading="lazy">

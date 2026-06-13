@@ -7,7 +7,7 @@
 <section class="section hero container" id="hero" aria-label="Introduction">
   <p class="eyebrow"><span aria-hidden="true">&gt;_ </span>portfolio</p>
   <h1 class="hero__name">{{ profile.name | default: site.title }}</h1>
-  <p class="hero__tagline lead">{{ profile.tagline | default: site.description }}</p>
+  <p class="hero__tagline lead" data-typed>{{ profile.tagline | default: site.description }}</p>
   <div class="hero__cta">
     <a class="btn btn--primary" href="#projects">Explore Projects</a>
     <a class="btn btn--secondary" href="{{ '/blog/' | relative_url }}">Read the Blog</a>

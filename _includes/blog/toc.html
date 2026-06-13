@@ -1,11 +1,35 @@
 {%- comment -%}
-  Table-of-contents markup stub. Rendered only when the post opts in with
-  `toc: true`. The sticky / active-section behaviour (and its scroll tracking)
-  is delivered in Sprint 5 (005-interactivity-polish); this stub reserves the
-  markup slot so the post layout is stable now.
+  Table of contents (FR-002). Server-rendered from the post's h2/h3 headings
+  (kramdown auto-generates the ids), so it is a working anchor list with JS off.
+  blog.js only layers active-section tracking on top — it never builds the list.
+  Collapsible on small screens via <details>; rendered only when the post opts in
+  with `toc: true` AND has at least two headings. Pass the rendered body as
+  `content` from the post layout.
 {%- endcomment -%}
-{%- if page.toc -%}
-<nav class="post-toc" aria-label="Table of contents" hidden data-toc>
-  {%- comment -%} Populated in Sprint 5. {%- endcomment -%}
+{%- if page.toc and include.content -%}
+  {%- assign _items = "" -%}
+  {%- assign _count = 0 -%}
+  {%- assign _frags = include.content | split: "<h" -%}
+  {%- for _frag in _frags -%}
+    {%- assign _lvl = _frag | slice: 0 -%}
+    {%- if _lvl == "2" or _lvl == "3" -%}
+      {%- assign _idparts = _frag | split: 'id="' -%}
+      {%- if _idparts.size > 1 -%}
+        {%- assign _id = _idparts[1] | split: '"' | first -%}
+        {%- assign _text = _frag | split: ">" | slice: 1 | join: ">" | split: "</h" | first | strip_html | strip -%}
+        {%- if _id != "" and _text != "" -%}
+          {%- capture _items -%}{{ _items }}<li class="post-toc__item post-toc__item--h{{ _lvl }}"><a href="#{{ _id }}">{{ _text }}</a></li>{%- endcapture -%}
+          {%- assign _count = _count | plus: 1 -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if _count >= 2 -%}
+<nav class="post-toc" aria-label="Table of contents" data-toc>
+  <details class="post-toc__disclosure" open>
+    <summary class="post-toc__summary">On this page</summary>
+    <ol class="post-toc__list">{{ _items }}</ol>
+  </details>
 </nav>
+  {%- endif -%}
 {%- endif -%}

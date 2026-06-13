@@ -62,6 +62,54 @@ html {
   top: var(--space-2);
 }
 
+// ── Visually-hidden utility (Constitution Principle III) ─────────────────────
+// Accessible name for icon-only controls (hamburger label, scroll-top label).
+.visually-hidden {
+  @include visually-hidden;
+}
+
+// ── Scroll-to-top control (FR-005) ────────────────────────────────────────────
+// Pure enhancement: hidden until blog/main.js adds .is-visible past a scroll
+// threshold. Transform/opacity reveal → no layout shift (no CLS). With JS off it
+// stays hidden (the browser's own scrolling remains; no dead control on screen).
+.scroll-top {
+  position: fixed;
+  right: var(--space-6);
+  bottom: var(--space-6);
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-12);
+  height: var(--space-12);
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--accent-primary);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(var(--space-4));
+  pointer-events: none;
+  transition: opacity var(--transition-base), transform var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.scroll-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.scroll-top:hover,
+.scroll-top:focus-visible {
+  border-color: var(--accent-primary);
+}
+
+.scroll-top__icon {
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+
 // ── Reduced-motion guard (Constitution Principle III) ────────────────────────
 @media (prefers-reduced-motion: reduce) {
   html {
