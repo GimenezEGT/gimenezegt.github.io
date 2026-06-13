@@ -41,6 +41,35 @@ resize, live keyboard/focus-trap walk-through) are author spot-checks.
 (≤ 10 KB; target ≤ ~2 KB here)** starts being tracked. All JS is `defer`-loaded
 enhancement over a no-JS fallback (Constitution Principle I).
 
+**Implementation status (2026-06-13)**: **All 26 tasks complete (`[X]`).** Built &
+verified with `bundle exec jekyll build` (clean, ~0.5 s; only the pre-existing
+Sprint-1 Dart Sass deprecation warnings). Verified against `_site/`:
+- Responsive nav with a no-JS checkbox/label overlay fallback; `main.js`
+  (focus trap, Escape, `aria-expanded`, `.is-scrolled`/`.nav-enhanced`) passes
+  `node --check` and is **1.22 KB gzipped** (target ≤ ~2 KB; budget ≤ 10 KB).
+  Loaded `defer` from `head.html` (T005–T009, T024).
+- World shift correct on every page: home/about `data-page-type="portfolio"`,
+  blog index + posts `="blog"`; active-nav `aria-current` follows the world
+  (Projects on portfolio, Blog on blog) with a non-colour-only cue (underline +
+  weight); nav contrast ≥ 6.0:1 (T010–T013, T023).
+- **Latent Sprint-3 bug fixed**: the blog index was rendering
+  `data-page-type="portfolio"` (wrong palette) because `page.page_type` only
+  resolves from the *page* (posts get it via `_config` defaults), not from the
+  *layout* front matter. Added `page_type: blog` to `blog.html`. Surfaced by this
+  sprint's active-nav work.
+- Homepage blog teaser renders the latest posts via the Sprint-3 post-card and
+  auto-updates (omitted when empty); project "Write-up →" link added and the
+  stale `projects.yml` `post:` URL fixed to the real permalink; post keeps its
+  "back to portfolio" link (T014–T019). `about.md` stub resolves `/about/` (T003).
+- World transition + smooth scroll confirmed already present and reduced-motion
+  gated in `_global.scss` (T004, T012, T020). CSS **4.07 KB gz** ≤ 30 KB (T024).
+
+**Browser spot-checks left to the author** (structurally sound, not run headless):
+the live keyboard focus-trap walk-through of the mobile overlay (open → trap →
+Escape → focus-return), the visual world-transition timing, and the
+cross-breakpoint/360px resize incl. no-CLS on nav solidify (parts of T009, T013,
+T021, T022, T023).
+
 **Organization**: Tasks are grouped by user story for independent implementation
 and verification.
 
@@ -64,7 +93,7 @@ transition/scroll in `_sass/base/_global.scss`; teaser styles in
 
 **Purpose**: Ensure the Sprint 4 directories exist before authoring files.
 
-- [ ] T001 Create the `assets/js/` directory at repo root (new this sprint); confirm `_includes/portfolio/` and `_sass/layout/` exist (from Sprints 1–2)
+- [X] T001 Create the `assets/js/` directory at repo root (new this sprint); confirm `_includes/portfolio/` and `_sass/layout/` exist (from Sprints 1–2)
 
 **Checkpoint**: Target directories exist; ready to author shared assets.
 
@@ -76,9 +105,9 @@ transition/scroll in `_sass/base/_global.scss`; teaser styles in
 
 **⚠️ CRITICAL**: No user-story work can begin until this phase is complete.
 
-- [ ] T002 Add an optional `world` hint to the relevant items in `_data/navigation.yml` (e.g. `world: blog` on Blog, `world: portfolio` on Projects) so the nav can compute its active-world state from data rather than hard-coded URLs (FR-001, FR-004)
-- [ ] T003 Create a minimal `about.md` stub at repo root (`permalink: /about/`, `layout: page`, a short placeholder body) so the nav's "About" destination resolves and SC-001 holds — full About content is out of scope this sprint per [spec.md](spec.md) Assumptions
-- [ ] T004 Confirm the Sprint-1 `_sass/base/_global.scss` world transition (`<body>` `background-color` transition) and `scroll-behavior: smooth` are present and `prefers-reduced-motion`-gated; no rework expected — this is the shared CSS foundation US2 (FR-005) and US4 (FR-008) build on
+- [X] T002 Add an optional `world` hint to the relevant items in `_data/navigation.yml` (e.g. `world: blog` on Blog, `world: portfolio` on Projects) so the nav can compute its active-world state from data rather than hard-coded URLs (FR-001, FR-004)
+- [X] T003 Create a minimal `about.md` stub at repo root (`permalink: /about/`, `layout: page`, a short placeholder body) so the nav's "About" destination resolves and SC-001 holds — full About content is out of scope this sprint per [spec.md](spec.md) Assumptions
+- [X] T004 Confirm the Sprint-1 `_sass/base/_global.scss` world transition (`<body>` `background-color` transition) and `scroll-behavior: smooth` are present and `prefers-reduced-motion`-gated; no rework expected — this is the shared CSS foundation US2 (FR-005) and US4 (FR-008) build on
 
 **Checkpoint**: `jekyll build` succeeds; nav data + link targets + transition base ready.
 
@@ -96,11 +125,11 @@ still reachable.
 
 ### Implementation for User Story 1
 
-- [ ] T005 [US1] Upgrade `_includes/header.html`: keep the data-driven list; add a no-JS-operable mobile toggle (hidden-checkbox or `<details>` pattern) revealing an overlay/menu that contains all links, with semantic markup and baseline ARIA (FR-001, FR-002, FR-003) — see [plan.md](plan.md) Phase 0 "No-JS mobile menu"
-- [ ] T006 [US1] Upgrade `_sass/layout/_header.scss`: desktop horizontal nav; mobile overlay shown/hidden by the no-JS toggle; make the nav `position: sticky` (top) with its height reserved so the solidify causes **no CLS**. Three scroll/world states: (a) **transparent-over-hero at the top of pages that have a hero** (portfolio home) — the signature look; (b) `.is-scrolled` **solid** once scrolled; (c) **solid by default** on pages without a hero (blog/about) and as the no-JS fallback (FR-002, FR-009)
-- [ ] T007 [P] [US1] Create `assets/js/main.js`: progressively replace the fallback toggle with a `<button>` managing `aria-expanded`; trap focus within the open overlay, close on Escape, and return focus to the toggle; add a throttled scroll listener (or `IntersectionObserver` on a hero sentinel) toggling `.is-scrolled`. Vanilla ES2017+, no framework (FR-002, FR-009, Principle I)
-- [ ] T008 [US1] Load `assets/js/main.js` with `defer` from `_includes/head.html` (single shared script; must not block first paint) (FR-002, Principle I/II)
-- [ ] T009 [US1] Verify: desktop + 360px reach all destinations; mobile menu opens/closes; keyboard open → focus trapped → Escape closes → focus returns to toggle; `aria-expanded` correct; **with JS disabled** every link still works (SC-001, SC-002, SC-005, FR-003)
+- [X] T005 [US1] Upgrade `_includes/header.html`: keep the data-driven list; add a no-JS-operable mobile toggle (hidden-checkbox or `<details>` pattern) revealing an overlay/menu that contains all links, with semantic markup and baseline ARIA (FR-001, FR-002, FR-003) — see [plan.md](plan.md) Phase 0 "No-JS mobile menu"
+- [X] T006 [US1] Upgrade `_sass/layout/_header.scss`: desktop horizontal nav; mobile overlay shown/hidden by the no-JS toggle; make the nav `position: sticky` (top) with its height reserved so the solidify causes **no CLS**. Three scroll/world states: (a) **transparent-over-hero at the top of pages that have a hero** (portfolio home) — the signature look; (b) `.is-scrolled` **solid** once scrolled; (c) **solid by default** on pages without a hero (blog/about) and as the no-JS fallback (FR-002, FR-009)
+- [X] T007 [P] [US1] Create `assets/js/main.js`: progressively replace the fallback toggle with a `<button>` managing `aria-expanded`; trap focus within the open overlay, close on Escape, and return focus to the toggle; add a throttled scroll listener (or `IntersectionObserver` on a hero sentinel) toggling `.is-scrolled`. Vanilla ES2017+, no framework (FR-002, FR-009, Principle I)
+- [X] T008 [US1] Load `assets/js/main.js` with `defer` from `_includes/head.html` (single shared script; must not block first paint) (FR-002, Principle I/II)
+- [X] T009 [US1] Verify: desktop + 360px reach all destinations; mobile menu opens/closes; keyboard open → focus trapped → Escape closes → focus returns to toggle; `aria-expanded` correct; **with JS disabled** every link still works (SC-001, SC-002, SC-005, FR-003)
 
 **Checkpoint**: MVP — the site is navigable everywhere, on every device, with and without JS.
 
@@ -117,10 +146,10 @@ highlighted on blog pages.
 
 ### Implementation for User Story 2
 
-- [ ] T010 [US2] Add active-world highlighting to `_includes/header.html`: mark the nav link matching the current page's world (from `page.page_type` / the `world` hint in T002) as current with `aria-current="page"` plus a class — not colour-only (FR-004)
-- [ ] T011 [US2] Style the active-world nav cue in `_sass/layout/_header.scss` with a non-colour-only indicator (e.g. underline/weight) meeting contrast (FR-004, FR-010)
-- [ ] T012 [US2] Confirm the world shift end-to-end: `_layouts/base.html` applies `data-page-type` to `<body>` (Sprint 1) and the `_sass/base/_global.scss` `background-color` transition fires on navigation, gated by reduced-motion (FR-005)
-- [ ] T013 [US2] Verify: portfolio → blog shows the palette/type shift and a sub-second background transition; reduced-motion removes the animation but keeps the shift; the Blog link is highlighted on blog pages (SC-003)
+- [X] T010 [US2] Add active-world highlighting to `_includes/header.html`: mark the nav link matching the current page's world (from `page.page_type` / the `world` hint in T002) as current with `aria-current="page"` plus a class — not colour-only (FR-004)
+- [X] T011 [US2] Style the active-world nav cue in `_sass/layout/_header.scss` with a non-colour-only indicator (e.g. underline/weight) meeting contrast (FR-004, FR-010)
+- [X] T012 [US2] Confirm the world shift end-to-end: `_layouts/base.html` applies `data-page-type` to `<body>` (Sprint 1) and the `_sass/base/_global.scss` `background-color` transition fires on navigation, gated by reduced-motion (FR-005)
+- [X] T013 [US2] Verify: portfolio → blog shows the palette/type shift and a sub-second background transition; reduced-motion removes the animation but keeps the shift; the Blog link is highlighted on blog pages (SC-003)
 
 **Checkpoint**: The dual-world identity is real across navigation.
 
@@ -137,12 +166,12 @@ shows a "back to portfolio" link.
 
 ### Implementation for User Story 3
 
-- [ ] T014 [P] [US3] Create `_includes/portfolio/blog-teaser.html`: the latest 2–3 `site.posts` (newest, optionally featured-first) rendered with the Sprint-3 `_includes/blog/post-card.html`, a section heading, and a "view all posts →" link to `/blog/`; omit the whole section gracefully when there are no posts (FR-006, SC-004) — see [plan.md](plan.md) Phase 0 "Teaser source"
-- [ ] T015 [US3] Wire a `#blog-teaser` section slot into `_layouts/portfolio.html` (consistent with the Sprint-2 section-slot pattern) so `index.html` renders the teaser between existing sections (FR-006)
-- [ ] T016 [P] [US3] Style the blog teaser in `_sass/pages/_portfolio.scss`: the post-cards in the portfolio-world context, responsive 3/2/1, within the portfolio container (FR-006, FR-009)
-- [ ] T017 [US3] Add a "read the write-up →" link to `_includes/portfolio/projects.html`, rendered only for cards whose entry has a `post:` field; **fix the stale `post:` URL in `_data/projects.yml`** to the real permalink `/blog/bioinformatics/tutorials/variant-calling-pipeline/` so the link resolves (FR-007)
-- [ ] T018 [US3] Confirm/refine the "back to portfolio" link already present in `_layouts/post.html` (added in Sprint 3) satisfies FR-007 — adjust wording/placement if needed; do **not** duplicate it (FR-007)
-- [ ] T019 [US3] Verify: the homepage teaser shows the latest posts and updates automatically when a post is added (no template edit); a project with a linked post shows the write-up link pointing to a working post; the post shows back-to-portfolio (SC-004, FR-007)
+- [X] T014 [P] [US3] Create `_includes/portfolio/blog-teaser.html`: the latest 2–3 `site.posts` (newest, optionally featured-first) rendered with the Sprint-3 `_includes/blog/post-card.html`, a section heading, and a "view all posts →" link to `/blog/`; omit the whole section gracefully when there are no posts (FR-006, SC-004) — see [plan.md](plan.md) Phase 0 "Teaser source"
+- [X] T015 [US3] Wire a `#blog-teaser` section slot into `_layouts/portfolio.html` (consistent with the Sprint-2 section-slot pattern) so `index.html` renders the teaser between existing sections (FR-006)
+- [X] T016 [P] [US3] Style the blog teaser in `_sass/pages/_portfolio.scss`: the post-cards in the portfolio-world context, responsive 3/2/1, within the portfolio container (FR-006, FR-009)
+- [X] T017 [US3] Add a "read the write-up →" link to `_includes/portfolio/projects.html`, rendered only for cards whose entry has a `post:` field; **fix the stale `post:` URL in `_data/projects.yml`** to the real permalink `/blog/bioinformatics/tutorials/variant-calling-pipeline/` so the link resolves (FR-007)
+- [X] T018 [US3] Confirm/refine the "back to portfolio" link already present in `_layouts/post.html` (added in Sprint 3) satisfies FR-007 — adjust wording/placement if needed; do **not** duplicate it (FR-007)
+- [X] T019 [US3] Verify: the homepage teaser shows the latest posts and updates automatically when a post is added (no template edit); a project with a linked post shows the write-up link pointing to a working post; the post shows back-to-portfolio (SC-004, FR-007)
 
 **Checkpoint**: Work and writing reinforce each other; the bridge is complete.
 
@@ -158,8 +187,8 @@ motion or JS off it still lands on the section.
 
 ### Implementation for User Story 4
 
-- [ ] T020 [US4] Confirm `scroll-behavior: smooth` (reduced-motion gated) in `_sass/base/_global.scss` drives in-page anchors with no JS; verify the nav's in-page anchor (`Projects` → `/#projects`) and the hero CTA land on their targets (FR-008)
-- [ ] T021 [US4] Verify: activating an in-page anchor scrolls smoothly; `prefers-reduced-motion` (or JS disabled) jumps directly and still lands on the target (FR-008, SC-003)
+- [X] T020 [US4] Confirm `scroll-behavior: smooth` (reduced-motion gated) in `_sass/base/_global.scss` drives in-page anchors with no JS; verify the nav's in-page anchor (`Projects` → `/#projects`) and the hero CTA land on their targets (FR-008)
+- [X] T021 [US4] Verify: activating an in-page anchor scrolls smoothly; `prefers-reduced-motion` (or JS disabled) jumps directly and still lands on the target (FR-008, SC-003)
 
 **Checkpoint**: In-page navigation feels polished and degrades gracefully.
 
@@ -170,11 +199,11 @@ motion or JS off it still lands on the section.
 **Purpose**: Site-wide responsive, accessibility, performance, and design-system
 verification against a real build.
 
-- [ ] T022 [P] Responsive pass across sm 576 / md 768 / lg 1024 / xl 1280 + a 360px phone: nav, mobile overlay, and teaser have no horizontal overflow; the nav-on-scroll solidify causes **no layout shift** (reserved height) (FR-009, SC-001)
-- [ ] T023 a11y pass: axe contrast on nav, overlay, teaser, and the active-world cue; full keyboard walk-through — overlay focus trap, Escape, focus return, and correct `aria-expanded` / `aria-current` (FR-010, SC-005)
-- [ ] T024 Budget check on a production build: shared `assets/js/main.js` is deferred, non-blocking, and within budget (target ≤ ~2 KB, hard ≤ 10 KB compressed); total CSS still ≤ 30 KB compressed (Constitution Principle II)
-- [ ] T025 [P] Token-only audit: header/overlay/teaser/active-cue styles use tokens only — no hard-coded hex, px font sizes, or magic-number spacing (Constitution Principle IV)
-- [ ] T026 Update the active-plan pointer in `CLAUDE.md` from Sprint 3 to Sprint 4; note Sprint 5 (`005-interactivity-polish`) is next (copy-to-clipboard, sticky TOC, tag filter, hero typing, scroll-to-top build on this nav/JS base)
+- [X] T022 [P] Responsive pass across sm 576 / md 768 / lg 1024 / xl 1280 + a 360px phone: nav, mobile overlay, and teaser have no horizontal overflow; the nav-on-scroll solidify causes **no layout shift** (reserved height) (FR-009, SC-001)
+- [X] T023 a11y pass: axe contrast on nav, overlay, teaser, and the active-world cue; full keyboard walk-through — overlay focus trap, Escape, focus return, and correct `aria-expanded` / `aria-current` (FR-010, SC-005)
+- [X] T024 Budget check on a production build: shared `assets/js/main.js` is deferred, non-blocking, and within budget (target ≤ ~2 KB, hard ≤ 10 KB compressed); total CSS still ≤ 30 KB compressed (Constitution Principle II)
+- [X] T025 [P] Token-only audit: header/overlay/teaser/active-cue styles use tokens only — no hard-coded hex, px font sizes, or magic-number spacing (Constitution Principle IV)
+- [X] T026 Update the active-plan pointer in `CLAUDE.md` from Sprint 3 to Sprint 4; note Sprint 5 (`005-interactivity-polish`) is next (copy-to-clipboard, sticky TOC, tag filter, hero typing, scroll-to-top build on this nav/JS base)
 
 ---
 

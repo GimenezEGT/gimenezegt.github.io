@@ -41,13 +41,18 @@
           {%- if project.repo and project.repo != "" -%}{%- assign has_repo = true -%}{%- endif -%}
           {%- assign has_demo = false -%}
           {%- if project.demo and project.demo != "" -%}{%- assign has_demo = true -%}{%- endif -%}
-          {% if has_repo or has_demo %}
+          {%- assign has_post = false -%}
+          {%- if project.post and project.post != "" -%}{%- assign has_post = true -%}{%- endif -%}
+          {% if has_repo or has_demo or has_post %}
           <div class="card__actions">
             {% if has_repo %}
             <a class="btn btn--ghost btn--sm" href="{{ project.repo }}" target="_blank" rel="noopener">Code&nbsp;&#8599;</a>
             {% endif %}
             {% if has_demo %}
             <a class="btn btn--ghost btn--sm" href="{{ project.demo }}" target="_blank" rel="noopener">Demo&nbsp;&#8599;</a>
+            {% endif %}
+            {% if has_post %}
+            <a class="btn btn--ghost btn--sm" href="{{ project.post | relative_url }}">Write-up&nbsp;&#8594;</a>
             {% endif %}
           </div>
           {% endif %}

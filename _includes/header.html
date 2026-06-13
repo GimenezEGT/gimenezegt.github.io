@@ -1,18 +1,36 @@
-<header class="site-header">
+{%- comment -%}
+  Site header / primary nav (FR-001, FR-002, FR-003, FR-004).
+
+  - Data-driven links from _data/navigation.yml.
+  - Responsive: desktop shows the horizontal list; on narrow viewports the list
+    becomes a full-screen overlay revealed by a no-JS checkbox+label toggle, so
+    every link is reachable without JavaScript (FR-003).
+  - main.js progressively upgrades the toggle (button semantics, aria-expanded,
+    focus trap, Escape) and the on-scroll solidify (FR-002, FR-009).
+  - The header overlays the hero on the homepage (layout: portfolio) and is solid
+    elsewhere / when scrolled / without JS.
+  - Active world: the link whose `world` matches this page's page_type is marked
+    aria-current (FR-004).
+{%- endcomment -%}
+{%- assign current_world = page.page_type | default: "portfolio" -%}
+<header class="site-header{% if page.layout == 'portfolio' %} site-header--overlay{% endif %}" data-header>
   <div class="site-header__inner container">
     <a class="site-header__brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
 
-    <nav class="site-nav" aria-label="Primary">
+    <input type="checkbox" id="nav-toggle" class="site-nav__checkbox">
+    <label for="nav-toggle" class="site-nav__toggle" data-nav-toggle>
+      <span class="site-nav__toggle-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Menu</span>
+    </label>
+
+    <nav class="site-nav" id="primary-nav" aria-label="Primary" data-nav>
       <ul class="site-nav__list">
         {% for item in site.data.navigation %}
           <li class="site-nav__item">
-            <a class="site-nav__link" href="{{ item.url | relative_url }}">{{ item.name }}</a>
+            <a class="site-nav__link" href="{{ item.url | relative_url }}"{% if item.world and item.world == current_world %} aria-current="page"{% endif %}>{{ item.name }}</a>
           </li>
         {% endfor %}
       </ul>
     </nav>
   </div>
 </header>
-{%- comment -%}
-  Responsive hamburger + overlay and active-world highlighting land in Sprint 4.
-{%- endcomment -%}

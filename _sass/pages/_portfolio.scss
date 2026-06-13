@@ -175,6 +175,15 @@
   gap: var(--space-6);
 }
 
+// ── Blog teaser (FR-006) — latest posts on the homepage ──────────────────────
+// Reuses .projects__grid for the 3/2/1 reflow and the Sprint-3 post-card.
+.blog-teaser__grid {
+  margin-bottom: var(--space-8);
+}
+.blog-teaser__more {
+  margin: 0;
+}
+
 // ── Enhancement-only motion (Constitution Principles I & III) ─────────────────
 @include motion-safe {
   .card {

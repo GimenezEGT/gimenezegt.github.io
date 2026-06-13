@@ -1,0 +1,23 @@
+{%- comment -%}
+  Homepage blog teaser (FR-006, SC-004). Surfaces the latest posts as cards using
+  the Sprint-3 post-card component, with a link into the blog. Auto-updates as
+  posts are added — no manual edits. Omitted entirely when there are no posts.
+{%- endcomment -%}
+{% if site.posts.size > 0 %}
+<section class="section blog-teaser" id="blog-teaser" aria-labelledby="blog-teaser-heading">
+  <div class="container">
+    <div class="section__intro">
+      <p class="eyebrow"><span aria-hidden="true">&gt;_ </span>writing</p>
+      <h2 id="blog-teaser-heading">From the blog</h2>
+    </div>
+
+    <ul class="projects__grid blog-teaser__grid">
+      {% for post in site.posts limit: 3 %}{% include blog/post-card.html post=post %}{% endfor %}
+    </ul>
+
+    <p class="blog-teaser__more">
+      <a class="btn btn--ghost btn--sm" href="{{ '/blog/' | relative_url }}">View all posts&nbsp;&#8594;</a>
+    </p>
+  </div>
+</section>
+{% endif %}

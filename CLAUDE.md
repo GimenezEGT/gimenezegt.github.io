@@ -16,7 +16,8 @@ under `specs/`. Read the relevant plan before implementing a sprint:
 Source of truth for scope: `DEVELOPMENT_PLAN.md`. Next step per sprint:
 `/speckit-tasks` to generate `tasks.md`, then `/speckit-implement`.
 
-Active plan: `specs/003-blog-core/plan.md` (Sprint 3 — Blog Core). Next:
-Sprint 4 (`004-navigation-bridge`) — its homepage blog teaser consumes
-`featured: true` posts authored here.
+Active plan: `specs/004-navigation-bridge/plan.md` (Sprint 4 — Navigation &
+Bridge; first sprint with JS). Next: Sprint 5 (`005-interactivity-polish`) —
+copy-to-clipboard, sticky TOC, tag filter, hero typing, scroll-to-top build on
+this nav/JS base.
 <!-- SPECKIT END -->

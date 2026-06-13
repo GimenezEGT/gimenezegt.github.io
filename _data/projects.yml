@@ -8,7 +8,7 @@
   repo: "https://github.com/enricogimenez/genomepipe"
   demo: ""
   featured: true
-  post: "/blog/bioinformatics/variant-pipeline/"
+  post: "/blog/bioinformatics/tutorials/variant-calling-pipeline/"
 
 - title: "ExpressionAtlas"
   description: "Interactive dashboard for exploring differential gene-expression results across conditions."

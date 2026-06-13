@@ -1,7 +1,11 @@
 # Primary navigation links (ordered). Consumed by _includes/header.html.
+# `world` is an optional hint used for active-state highlighting: a link is marked
+# current when its world matches the current page's page_type (Sprint 4, FR-004).
 - name: "Projects"
   url: "/#projects"
+  world: "portfolio"
 - name: "Blog"
   url: "/blog/"
+  world: "blog"
 - name: "About"
   url: "/about/"
