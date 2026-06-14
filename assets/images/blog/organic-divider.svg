@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 80" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Decorative organic vine divider. Used as a CSS mask (alpha only); the blog
+       palette tint comes from the token in CSS. A warm, hand-drawn counterpoint
+       to the portfolio's geometric helix. -->
+  <path d="M20,40 C120,12 200,68 300,40 C400,12 480,68 580,40 C660,16 740,62 780,40"/>
+  <!-- leaves along the vine -->
+  <path d="M150,36 q-4,-20 22,-24 q-2,18 -22,24 z" fill="#000" stroke="none"/>
+  <path d="M330,44 q4,20 -22,24 q2,-18 22,-24 z" fill="#000" stroke="none"/>
+  <path d="M510,36 q-4,-20 22,-24 q-2,18 -22,24 z" fill="#000" stroke="none"/>
+  <path d="M690,44 q4,20 -22,24 q2,-18 22,-24 z" fill="#000" stroke="none"/>
+  <!-- small buds -->
+  <circle cx="20" cy="40" r="3" fill="#000" stroke="none"/>
+  <circle cx="780" cy="40" r="3" fill="#000" stroke="none"/>
+</svg>

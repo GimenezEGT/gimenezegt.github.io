@@ -15,12 +15,46 @@
 
 // ── Hero (FR-002, SC-001) ────────────────────────────────────────────────────
 .hero {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: var(--space-4);
   min-height: 70vh;
+}
+
+// Content sits above the decorative helix layer.
+.hero > :not(.hero__motif) {
+  position: relative;
+  z-index: 1;
+}
+
+// DNA helix motif (FR-001) — decorative, aria-hidden. External SVG used as a CSS
+// mask so the token tints it; sits to the right at low opacity so it never drops
+// hero-text contrast (SC-001). Animated as a whole via transform (motion-safe).
+.hero__motif {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-color: var(--accent-terminal);
+  -webkit-mask: url("../images/hero/dna-helix.svg") no-repeat right center;
+  mask: url("../images/hero/dna-helix.svg") no-repeat right center;
+  -webkit-mask-size: auto 95%;
+  mask-size: auto 95%;
+}
+
+@keyframes helix-drift {
+  from { transform: translateY(-2%); }
+  to   { transform: translateY(2%); }
+}
+
+@include motion-safe {
+  .hero__motif {
+    animation: helix-drift 24s ease-in-out infinite alternate;
+  }
 }
 .hero__name {
   margin: 0;
@@ -111,17 +145,11 @@
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
 }
 
-// ── Skills (FR-007) ──────────────────────────────────────────────────────────
-.skills__grid {
-  display: grid;
-  gap: var(--space-6);
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
-}
-.skills__group {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-6);
+// ── Skills (FR-003) — hexagonal grid on md+, simple grid on small ─────────────
+.skills__groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
 }
 .skills__category {
   margin: 0 0 var(--space-4);
@@ -130,34 +158,61 @@
   letter-spacing: 0.04em;
   color: var(--accent-primary);
 }
-.skills__list {
+
+// Mobile-first fallback: a simple labelled grid (FR-003 small-screen degradation).
+.hexgrid {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr));
+}
+.hexgrid__cell {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.hexgrid__inner {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-}
-.skills__item {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--border);
+  justify-content: center;
+  gap: var(--space-1);
+  height: 100%;
+  padding: var(--space-3);
+  text-align: center;
 }
-.skills__item:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
+.hexgrid__name {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
 }
-.skills__level {
+.hexgrid__level {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   text-transform: lowercase;
   color: var(--text-muted);
 }
-.skills__level--expert     { color: var(--accent-terminal); }
-.skills__level--proficient { color: var(--accent-secondary); }
+
+// md+: turn the cells into hexagons. aspect-ratio reserves space → no CLS.
+@include respond-to("md") {
+  .hexgrid {
+    gap: var(--space-3);
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  }
+  .hexgrid__cell {
+    aspect-ratio: 1 / 1.1547;
+    border: 0;
+    border-radius: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  .hexgrid__cell--expert {
+    background: color-mix(in srgb, var(--accent-terminal) 22%, var(--bg-elevated));
+  }
+  .hexgrid__cell--proficient {
+    background: color-mix(in srgb, var(--accent-secondary) 18%, var(--bg-elevated));
+  }
+}
 
 // ── Contact (FR-008) ─────────────────────────────────────────────────────────
 .contact__inner {

@@ -101,14 +101,22 @@ gated on pointer + motion.
 
 ### Phase 0: Research & Decisions
 
-- **DNA helix** — Decision: a hand-authored/optimised SVG animated via CSS
-  transform (slow rotate/translate), low opacity, `aria-hidden`, behind hero text;
-  static under reduced motion. Verify hero contrast over it (FR-001/SC-001).
-  Alternative rejected: canvas/WebGL helix (overkill, JS cost).
+- **DNA helix** — Decision: a hand-authored/optimised **external** SVG file
+  referenced (via `<img>` or CSS `background-image`) inside an `aria-hidden`
+  `.hero__motif` wrapper; the **wrapper** is animated via CSS `transform` (slow
+  rotate/translate) — not internal SVG paths, since an external reference can only
+  be transformed as a whole. Low opacity, behind hero text; static under reduced
+  motion. Verify hero contrast over it (FR-001/SC-001). Alternatives rejected:
+  inline SVG (bloats every homepage render), canvas/WebGL helix (overkill, JS cost).
 - **Terminal headers** — Decision: `section-header.html` partial renders a `>_`
-  prefix using `_terminal.scss` + reused cursor-blink. CSS-only.
-- **Hex skills grid** — Decision: CSS `clip-path: polygon(...)` hexagons in a grid;
-  below `md`, fall back to the Sprint 2 tag/grid layout (FR-003).
+  prefix using `_terminal.scss` + the **reused** Sprint-5 `_cursor-blink.scss` caret
+  (no duplicate keyframes). CSS-only. **Designated headers**: all five portfolio
+  section intros (projects, skills, contact, about, blog-teaser) + the hero eyebrow;
+  blog-world headers are excluded (they get the organic treatment in US2).
+- **Hex skills grid** — Decision: **one hexagon per skill item** (category becomes a
+  labelled row above its hex cluster), via CSS Grid + `clip-path: polygon(...)` cells
+  with alternating row offset and a fixed `aspect-ratio` (no CLS); below `md`, fall
+  back to the Sprint 2 tag/grid layout (FR-003).
 - **Organic blog dividers** — Decision: optimised SVG line-art divider include,
   blog-palette stroke via `currentColor`/token; decorative/`aria-hidden` (FR-004).
 - **Card particles (optional)** — Decision: tiny capped canvas routine (≤ ~1 KB),

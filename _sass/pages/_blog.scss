@@ -83,6 +83,18 @@
   display: block;
 }
 
+// ── Organic divider (FR-004) — warm botanical counterpoint to the portfolio ───
+// Decorative (aria-hidden in markup). External SVG as a CSS mask so the blog
+// palette token tints it. Fixed height reserves space → no CLS.
+.blog-divider {
+  height: var(--space-12);
+  margin-block: var(--space-12);
+  opacity: 0.65;
+  background-color: var(--accent-primary);
+  -webkit-mask: url("../images/blog/organic-divider.svg") no-repeat center / contain;
+  mask: url("../images/blog/organic-divider.svg") no-repeat center / contain;
+}
+
 // ── Table of contents (FR-002) ────────────────────────────────────────────────
 // Server-rendered anchor list; blog.js adds active tracking. Collapsible on
 // small screens via <details>; on desktop the disclosure is always open and the

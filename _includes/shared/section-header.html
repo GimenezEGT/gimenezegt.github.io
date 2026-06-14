@@ -1,0 +1,22 @@
+{%- comment -%}
+  Terminal-style section header (FR-002). Renders the `>_` eyebrow + heading shared
+  by the portfolio section intros. The prompt glyph is styled in _terminal.scss and
+  the blinking caret comes from _cursor-blink.scss (.eyebrow).
+
+  Params:
+    label    — eyebrow text (e.g. "projects")
+    heading  — visible heading text
+    id       — heading id (for the section's aria-labelledby)
+    level    — heading tag, default "h2"
+    wrap     — true (default) wraps in .section__intro; pass false to omit
+{%- endcomment -%}
+{%- assign _tag = include.level | default: "h2" -%}
+{%- capture _header -%}<p class="eyebrow"><span class="eyebrow__prompt" aria-hidden="true">&gt;_ </span>{{ include.label }}</p>
+<{{ _tag }} id="{{ include.id }}">{{ include.heading }}</{{ _tag }}>{%- endcapture -%}
+{%- if include.wrap == false -%}
+{{ _header }}
+{%- else -%}
+<div class="section__intro">
+  {{ _header }}
+</div>
+{%- endif -%}

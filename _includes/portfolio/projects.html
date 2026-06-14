@@ -8,10 +8,7 @@
 {%- assign ordered = featured | concat: regular -%}
 <section class="section projects" id="projects" aria-labelledby="projects-heading">
   <div class="container">
-    <div class="section__intro">
-      <p class="eyebrow"><span aria-hidden="true">&gt;_ </span>projects</p>
-      <h2 id="projects-heading">Projects</h2>
-    </div>
+    {% include shared/section-header.html label="projects" heading="Projects" id="projects-heading" %}
 
     {% if ordered.size > 0 %}
     <ul class="projects__grid">

@@ -110,6 +110,13 @@ html {
   line-height: 1;
 }
 
+// ── Decorative motif convention (Sprint 6, FR-005/FR-007) ────────────────────
+// Every decorative motif (hero DNA helix `.hero__motif`, blog `.blog-divider`,
+// card `.card__particles`, the `.eyebrow` `>_`/caret) MUST be `aria-hidden` in
+// markup, `pointer-events: none`, and reserve its space (no CLS). Their animations
+// are frozen automatically by the reduced-motion guard below — no per-motif
+// reduced-motion rule is needed; the resting visual stays visible but static.
+
 // ── Reduced-motion guard (Constitution Principle III) ────────────────────────
 @media (prefers-reduced-motion: reduce) {
   html {

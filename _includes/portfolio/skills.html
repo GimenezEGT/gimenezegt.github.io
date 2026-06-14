@@ -1,26 +1,25 @@
 {%- comment -%}
-  Skills (FR-007). Rendered grouped by category from _data/skills.yml, with an
-  optional proficiency indicator when an item has a `level`.
+  Skills (FR-003). Grouped by category from _data/skills.yml. Each skill item is a
+  hexagon cell on larger viewports (clip-path in _portfolio.scss), degrading to a
+  simple labelled grid on small screens. The optional proficiency `level` tints the
+  cell and is shown as a sub-label.
 {%- endcomment -%}
 <section class="section skills" id="skills" aria-labelledby="skills-heading">
   <div class="container">
-    <div class="section__intro">
-      <p class="eyebrow"><span aria-hidden="true">&gt;_ </span>skills</p>
-      <h2 id="skills-heading">Skills</h2>
-    </div>
+    {% include shared/section-header.html label="skills" heading="Skills" id="skills-heading" %}
 
     {% if site.data.skills and site.data.skills.size > 0 %}
-    <div class="skills__grid">
+    <div class="skills__groups">
       {% for group in site.data.skills %}
       <div class="skills__group">
         <h3 class="skills__category">{{ group.category }}</h3>
-        <ul class="skills__list">
+        <ul class="hexgrid">
           {% for item in group.items %}
-          <li class="skills__item">
-            <span class="skills__name">{{ item.name }}</span>
-            {% if item.level %}
-            <span class="skills__level skills__level--{{ item.level }}">{{ item.level }}</span>
-            {% endif %}
+          <li class="hexgrid__cell{% if item.level %} hexgrid__cell--{{ item.level }}{% endif %}">
+            <span class="hexgrid__inner">
+              <span class="hexgrid__name">{{ item.name }}</span>
+              {% if item.level %}<span class="hexgrid__level">{{ item.level }}</span>{% endif %}
+            </span>
           </li>
           {% endfor %}
         </ul>

@@ -1,0 +1,12 @@
+// =============================================================================
+//  Terminal section headers (FR-002). The `.eyebrow` base (mono, terminal green)
+//  lives in base/_typography.scss and the blinking caret in _cursor-blink.scss;
+//  this file styles the `>_` prompt glyph emitted by shared/section-header.html.
+//  CSS-only, token-driven, reduced-motion safe (the blink is gated elsewhere).
+// =============================================================================
+
+.eyebrow__prompt {
+  font-weight: 700;
+  // Slightly brighter than the label so the prompt reads as a terminal cue.
+  color: var(--accent-terminal);
+}

@@ -6,8 +6,7 @@
 {%- assign email = site.data.social | where: "platform", "Email" | first -%}
 <section class="section contact" id="contact" aria-labelledby="contact-heading">
   <div class="container contact__inner">
-    <p class="eyebrow"><span aria-hidden="true">&gt;_ </span>contact</p>
-    <h2 id="contact-heading">Get in touch</h2>
+    {% include shared/section-header.html label="contact" heading="Get in touch" id="contact-heading" wrap=false %}
     <p class="contact__lead text-muted">
       Open to collaboration, roles, and interesting problems.
     </p>

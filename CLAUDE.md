@@ -16,14 +16,15 @@ under `specs/`. Read the relevant plan before implementing a sprint:
 Source of truth for scope: `DEVELOPMENT_PLAN.md`. Next step per sprint:
 `/speckit-tasks` to generate `tasks.md`, then `/speckit-implement`.
 
-Active plan: `specs/005-interactivity-polish/plan.md` (Sprint 5 — Interactivity &
-Polish; complete). Delivered: copy-to-clipboard, server-rendered TOC with
-IntersectionObserver active-tracking, client-side blog tag filter, hero typing,
-CSS cursor blink, scroll-to-top, and pointer-gated card hover — all `defer`/CSS
-progressive enhancements over a no-JS baseline. Per-page JS now split across
-`main.js` (shared: menu, nav-on-scroll, reduced-motion helper, scroll-top),
-`portfolio.js` (hero typing), and `blog.js` (copy, TOC, tag filter); loaded
-page-conditionally from `head.html`. Per-page JS ≤ 3.4 KB gz (budget 10 KB).
-Next: Sprint 6 (`006-motifs-identity`) — DNA helix, terminal headers, hex skills
-grid, organic dividers, building on this CSS/JS base.
+Active plan: `specs/006-motifs-identity/plan.md` (Sprint 6 — Motifs & Identity;
+complete). Delivered the bioinformatics/creative identity layer: an aria-hidden DNA
+helix behind the hero (external SVG via CSS `mask`, token-tinted, transform-animated,
+motion-safe), a reusable `shared/section-header.html` partial driving the `>_`
+terminal headers (`_terminal.scss` + reused Sprint-5 caret), a hexagonal skills grid
+(`clip-path` on md+, simple grid below), organic blog dividers (`_includes/blog/divider.html`,
+SVG mask in the blog palette), and an optional capped node-graph particle effect on
+project-card hover (`portfolio.js`, pointer + motion only). Every motif is
+decorative/`aria-hidden` and reduced-motion safe. Budgets: CSS 4.9 KB gz, per-page
+JS ≤ 3.34 KB gz (≤ 30 / 10 KB). Next: Sprint 7 (`007-optimization-launch`) — SEO/JSON-LD,
+perf + a11y launch gates, README, deploy.
 <!-- SPECKIT END -->

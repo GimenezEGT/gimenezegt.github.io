@@ -5,6 +5,7 @@
 // =============================================================================
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--bg-surface);
@@ -12,6 +13,21 @@
   border-radius: var(--radius);
   overflow: hidden;
   transition: border-color var(--transition-base);
+}
+
+// ── Project-card particle layer (FR-006) — optional, JS-injected on hover ─────
+// portfolio.js appends an aria-hidden <canvas> only on pointer + motion devices;
+// absent on touch / reduced motion. Decorative, no pointer events, no layout
+// shift (absolute overlay). Card content stays above it.
+.card__particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.card > :not(.card__particles) {
+  position: relative;
+  z-index: 1;
 }
 
 // Hover accent — pointer devices only (FR-006), so touch taps don't stick.
