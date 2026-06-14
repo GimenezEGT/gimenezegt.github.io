@@ -5,7 +5,7 @@
   description: "Automated NGS pipeline for variant calling, from raw reads to an annotated VCF."
   image: ""
   tags: ["Python", "Snakemake", "Bioinformatics"]
-  repo: "https://github.com/enricogimenez/genomepipe"
+  repo: "https://github.com/GimenezEGT/genomepipe"
   demo: ""
   featured: true
   post: "/blog/bioinformatics/tutorials/variant-calling-pipeline/"
@@ -14,7 +14,7 @@
   description: "Interactive dashboard for exploring differential gene-expression results across conditions."
   image: ""
   tags: ["R", "Shiny", "ggplot2"]
-  repo: "https://github.com/enricogimenez/expression-atlas"
+  repo: "https://github.com/GimenezEGT/expression-atlas"
   demo: "https://expression-atlas.example.com"
   featured: true
 
@@ -22,7 +22,7 @@
   description: "CLI that designs and validates PCR primers against a reference genome with off-target checks."
   image: ""
   tags: ["Python", "Click", "Biopython"]
-  repo: "https://github.com/enricogimenez/primerforge"
+  repo: "https://github.com/GimenezEGT/primerforge"
   demo: ""
   featured: false
 
