@@ -37,6 +37,13 @@ html {
   scrollbar-color: var(--border) transparent;
 }
 
+// The `hidden` attribute must always win, even over components that set their
+// own `display` (e.g. `.card { display: flex }`). Without this, JS toggling
+// `el.hidden` (tag filter, filter-empty notice) has no visual effect.
+[hidden] {
+  display: none !important;
+}
+
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
