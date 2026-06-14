@@ -5,13 +5,12 @@ date:   2026-06-10 23:03:45 -0300
 categories: [tutorials, electronics, raspberry-pi, automation]
 excerpt: "Aprenda passo a passo como configurar um Raspberry Pi Pico com CircuitPython para criar botões externos que funcionam como um teclado virtual no seu PC."
 image: /assets/images/blog/pipico-keyboard-cover.png
-toc: false
+toc: true
 featured: true
 ---
 
----
-PT
----
+
+### PT
 
 # Primeiros passos na eletrônica
 
@@ -137,7 +136,7 @@ Acabou.
 
 ---
 
-## EN
+### EN
 
 # First steps in electronics
 
