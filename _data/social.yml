@@ -2,7 +2,7 @@
 # section in Sprint 2). Remove entries you don't use — the footer degrades
 # gracefully when this list is empty.
 - platform: "GitHub"
-  url: "https://github.com/enricogimenez"
+  url: "https://github.com/GimenezEGT"
   icon: "github"
 - platform: "LinkedIn"
   url: "https://www.linkedin.com/in/enricogimenez"
