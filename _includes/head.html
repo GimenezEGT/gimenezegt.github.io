@@ -6,18 +6,19 @@
 
   {% include shared/seo.html %}
 
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {%- comment -%} Cache-busting: version-query assets by build time so updates invalidate (FR-010). Canonical/OG come from {% seo %} above. {%- endcomment -%}
+  {%- assign asset_ver = site.time | date: '%s' -%}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ asset_ver }}">
   <link rel="alternate" type="application/atom+xml"
         href="{{ '/feed.xml' | relative_url }}" title="{{ site.title }}">
-  <link rel="canonical" href="{{ page.url | absolute_url }}">
 
   {%- comment -%} Shared progressive-enhancement JS (menu, nav-on-scroll, scroll-top). Deferred; never blocks paint. {%- endcomment -%}
-  <script defer src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/main.js' | relative_url }}?v={{ asset_ver }}"></script>
   {%- comment -%} Per-world modules: each page ships only what it needs (FR-009). {%- endcomment -%}
   {%- assign world = page.page_type | default: "portfolio" -%}
   {%- if world == "blog" -%}
-  <script defer src="{{ '/assets/js/blog.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/blog.js' | relative_url }}?v={{ asset_ver }}"></script>
   {%- else -%}
-  <script defer src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/portfolio.js' | relative_url }}?v={{ asset_ver }}"></script>
   {%- endif -%}
 </head>

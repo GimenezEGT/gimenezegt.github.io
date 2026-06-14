@@ -1,9 +1,27 @@
 # ── Site identity ────────────────────────────────────────────────────────────
 title: "Enrico Gimenez"
 description: "Bioinformatics · Data Science · Molecular Biology"
-author: "Enrico Gimenez"
-url: "https://example.com"        # TODO: set to your custom domain (Sprint 7)
+# Hash form so jekyll-seo-tag emits twitter:creator as a handle (not the name).
+# Display consumers use `site.author.name` (see footer.html, shared/seo.html).
+author:
+  name: "Enrico Gimenez"
+  twitter: enricogimenez         # TODO(launch): set real handle (no @)
+lang: en
+# TODO(launch): set BOTH `url` here and the root `CNAME` file to the real custom
+# domain before deploy. These are the only two places the domain is configured.
+url: "https://example.com"
 baseurl: ""
+
+# ── SEO / social (jekyll-seo-tag + JSON-LD in _includes/shared/seo.html) ──────
+# Default Open Graph image used for pages without their own cover (FR-003 edge case).
+image: /assets/images/og-default.png
+twitter:
+  username: enricogimenez       # TODO(launch): set real handle (no @)
+  card: summary_large_image
+social:
+  name: "Enrico Gimenez"
+  links:                        # drives Person JSON-LD sameAs + og:profile
+    - https://github.com/GimenezEGT
 
 # ── URLs & content ───────────────────────────────────────────────────────────
 permalink: /blog/:categories/:title/

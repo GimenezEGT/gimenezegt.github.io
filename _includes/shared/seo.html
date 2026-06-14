@@ -1,16 +1,65 @@
 {%- comment -%}
-  Minimal SEO stub for Sprint 1. Replaced by jekyll-seo-tag ({% seo %}) plus
-  JSON-LD (Person / BlogPosting) in Sprint 7.
+  SEO + structured data (Sprint 7).
+  jekyll-seo-tag ({% seo %}) emits title, description, canonical, Open Graph, and
+  Twitter Card from _config.yml + page front matter. We add hand-written JSON-LD
+  the plugin does not: Person on the homepage, BlogPosting on posts (FR-003).
 {%- endcomment -%}
-{%- assign page_title = page.title | default: site.title -%}
-{%- assign page_desc = page.description | default: site.description -%}
-<title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-<meta name="description" content="{{ page_desc | strip_html | normalize_whitespace | truncate: 160 }}">
-<meta name="author" content="{{ site.author }}">
+{% seo %}
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="{{ page_title }}">
-<meta property="og:description" content="{{ page_desc | strip_html | truncate: 160 }}">
-<meta property="og:url" content="{{ page.url | absolute_url }}">
-<meta property="og:site_name" content="{{ site.title }}">
-<meta name="twitter:card" content="summary">
+{%- comment -%}
+  Default social image for pages without their own cover (FR-003 edge case).
+  jekyll-seo-tag has no site-wide default OG image, so emit it here only when the
+  page sets no `image` of its own (avoids a duplicate og:image tag).
+{%- endcomment -%}
+{%- unless page.image -%}
+<meta property="og:image" content="{{ site.image | absolute_url }}">
+<meta name="twitter:image" content="{{ site.image | absolute_url }}">
+{%- endunless -%}
+
+{%- comment -%} Person JSON-LD — homepage only. {%- endcomment -%}
+{%- if page.url == '/' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ site.social.name | default: site.author.name | jsonify }},
+  "url": {{ '/' | absolute_url | jsonify }},
+  "jobTitle": "Bioinformatics · Data Science · Molecular Biology",
+  "description": {{ site.description | jsonify }},
+  "image": {{ site.image | absolute_url | jsonify }}
+  {%- if site.social.links and site.social.links.size > 0 -%},
+  "sameAs": {{ site.social.links | jsonify }}
+  {%- endif -%}
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} BlogPosting JSON-LD — posts only. {%- endcomment -%}
+{%- if page.layout == 'post' or page.page_type == 'blog' -%}
+{%- assign post_image = page.image | default: site.image -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: site.description | strip_html | truncate: 160 | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ page.author | default: site.author.name | jsonify }},
+    "url": {{ '/' | absolute_url | jsonify }}
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": {{ site.author.name | jsonify }}
+  },
+  "image": {{ post_image | absolute_url | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ page.url | absolute_url | jsonify }}
+  }
+}
+</script>
+{%- endif -%}

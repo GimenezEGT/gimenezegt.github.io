@@ -16,7 +16,7 @@
       <li class="card{% if project.featured %} card--featured{% endif %}">
         {% if project.image and project.image != "" %}
         <div class="card__media">
-          <img src="{{ project.image | relative_url }}" alt="{{ project.title }} preview" loading="lazy">
+          <img src="{{ project.image | relative_url }}" alt="{{ project.title }} preview" loading="lazy" decoding="async">
         </div>
         {% else %}
         <div class="card__media">

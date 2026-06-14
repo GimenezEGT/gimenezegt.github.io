@@ -1,6 +1,6 @@
 <footer class="site-footer">
   <div class="site-footer__inner container">
-    <p class="site-footer__copy">© {{ site.time | date: '%Y' }} {{ site.author }}</p>
+    <p class="site-footer__copy">© {{ site.time | date: '%Y' }} {{ site.author.name | default: site.author }}</p>
 
     {% if site.data.social and site.data.social.size > 0 %}
     <ul class="site-footer__social" aria-label="Social and contact links">

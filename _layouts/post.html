@@ -11,7 +11,7 @@ page_type: blog
   {% include blog/toc.html content=content %}
 
   <div class="post__content">
-    {{ content | replace: '<img ', '<img loading="lazy" ' }}
+    {{ content | replace: '<img ', '<img loading="lazy" decoding="async" ' }}
   </div>
 
   {% include blog/divider.html %}
