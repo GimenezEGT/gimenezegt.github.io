@@ -7,7 +7,7 @@ bio: >
   data tools that turn messy wet-lab and sequencing data into answers —
   bridging the bench and the terminal.
 facts:
-  - { label: "based_in", value: "São Paulo, BR" }
-  - { label: "focus", value: "Bioinformatics · Data Science" }
+  - { label: "based_in", value: "Belo Horizonte, BR" }
+  - { label: "focus", value: "Bioinformatics · Data Science · IoT" }
   - { label: "current", value: "Molecular Biology research" }
-  - { label: "stack", value: "Python · R · Snakemake" }
+  - { label: "stack", value: "Python · Nextflow" }

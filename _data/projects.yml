@@ -1,33 +1,33 @@
 # Project entries rendered as cards by _includes/portfolio/projects.html.
 # Required: title, description, at least one tag. Optional: image, repo, demo,
 # featured, post. Featured entries are ordered first and emphasised.
-- title: "GenomePipe"
-  description: "Automated NGS pipeline for variant calling, from raw reads to an annotated VCF."
-  image: ""
-  tags: ["Python", "Snakemake", "Bioinformatics"]
-  repo: "https://github.com/GimenezEGT/genomepipe"
+- title: "BioPyTools"
+  description: "Small script collection for bioinformatics data parsing and manipulation that were useful to me and might be useful to others."
+  image: "/assets/images/biopython.png"
+  tags: ["Python", "Bioinformatics"]
+  repo: "https://github.com/GimenezEGT/BioPyTools"
   demo: ""
   featured: true
-  post: "/blog/bioinformatics/tutorials/variant-calling-pipeline/"
+  post: ""
 
-- title: "ExpressionAtlas"
-  description: "Interactive dashboard for exploring differential gene-expression results across conditions."
-  image: ""
-  tags: ["R", "Shiny", "ggplot2"]
-  repo: "https://github.com/GimenezEGT/expression-atlas"
-  demo: "https://expression-atlas.example.com"
-  featured: true
+# - title: "ExpressionAtlas"
+#   description: "Interactive dashboard for exploring differential gene-expression results across conditions."
+#   image: ""
+#   tags: ["R", "Shiny", "ggplot2"]
+#   repo: "https://github.com/GimenezEGT/expression-atlas"
+#   demo: "https://expression-atlas.example.com"
+#   featured: false
 
-- title: "PrimerForge"
-  description: "CLI that designs and validates PCR primers against a reference genome with off-target checks."
-  image: ""
-  tags: ["Python", "Click", "Biopython"]
-  repo: "https://github.com/GimenezEGT/primerforge"
-  demo: ""
-  featured: false
+# - title: "PrimerForge"
+#   description: "CLI that designs and validates PCR primers against a reference genome with off-target checks."
+#   image: ""
+#   tags: ["Python", "Click", "Biopython"]
+#   repo: "https://github.com/GimenezEGT/primerforge"
+#   demo: ""
+#   featured: false
 
-- title: "LabNotebook"
-  description: "Minimal Markdown lab-notebook generator with searchable, versioned protocol entries."
-  tags: ["JavaScript", "Eleventy"]
-  demo: "https://labnotebook.example.com"
-  featured: false
+# - title: "LabNotebook"
+#   description: "Minimal Markdown lab-notebook generator with searchable, versioned protocol entries."
+#   tags: ["JavaScript", "Eleventy"]
+#   demo: "https://labnotebook.example.com"
+#   featured: true

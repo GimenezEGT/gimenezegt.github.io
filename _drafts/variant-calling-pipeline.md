@@ -8,6 +8,7 @@ excerpt: "A step-by-step guide to a reproducible NGS variant-calling pipeline â€
 image: /assets/images/blog/variant-pipeline-cover.png
 toc: true
 featured: true
+published: false
 ---
 
 Calling variants from sequencing data is one of those tasks that looks simple in

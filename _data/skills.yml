@@ -1,28 +1,78 @@
 # Skills grouped by category. Consumed by _includes/portfolio/skills.html.
 # Each item: name (required), level (basic|proficient|expert, optional),
 # icon (optional).
-- category: "Languages"
-  items:
-    - { name: "Python", level: "expert" }
-    - { name: "R", level: "proficient" }
-    - { name: "Bash", level: "proficient" }
-    - { name: "SQL", level: "basic" }
+#
+# Proficiency level calibration:
+#   - expert      = proven mastery through years of professional practice / scientific output
+#   - proficient  = recurrent, autonomous use with delivered results
+#   - basic       = functional foundation in development (self-assessment: "beginner level")
 
-- category: "Bioinformatics"
+- category: "Molecular Diagnostics & qPCR"
   items:
-    - { name: "Snakemake", level: "expert" }
-    - { name: "Biopython", level: "proficient" }
-    - { name: "samtools / bcftools", level: "proficient" }
-    - { name: "Nextflow", level: "basic" }
+    - { name: "PCR / qPCR (Real Time)", level: "expert" }
+    - { name: "Molecular assay design and validation", level: "expert" }
+    - { name: "In silico primer and probe design", level: "expert" }
+    - { name: "In silico sensitivity / specificity verification", level: "expert" }
+    - { name: "qPCR assay multiplexing", level: "proficient" }
+    - { name: "Conventional PCR", level: "proficient" }
+    - { name: "Lyophilization & DNase/RNase-free production", level: "proficient" }
+
+- category: "Molecular Biology & Cloning"
+  items:
+    - { name: "Nucleic acid extraction", level: "expert" }
+    - { name: "Miniprep / Gigaprep", level: "proficient" }
+    - { name: "Bacterial transformation", level: "proficient" }
+    - { name: "Cloning", level: "proficient" }
+    - { name: "Heterologous protein production", level: "proficient" }
+    - { name: "Microbiology", level: "proficient" }
+
+- category: "Proteins & Immunoassays"
+  items:
+    - { name: "Protein purification by HPLC", level: "proficient" }
+    - { name: "SDS-PAGE (polyacrylamide gel)", level: "proficient" }
+    - { name: "ELISA", level: "proficient" }
+
+- category: "Bioinformatics & Genomics"
+  items:
+    - { name: "Bacterial genome assembly", level: "expert" }
+    - { name: "Comparative genomics", level: "proficient" }
+    - { name: "Pangenomics", level: "proficient" }
+    - { name: "Variant calling for diagnostics (Galaxy)", level: "proficient" }
+    - { name: "Immunoinformatics (BepiPred / IEDB)", level: "proficient" }
+    - { name: "Public databases (NCBI / EMBL / PDB)", level: "proficient" }
+    - { name: "Linux / command line", level: "basic" }
+
+- category: "Programming & Scripting"
+  items:
+    - { name: "Python", level: "proficient" }
+    - { name: "R", level: "basic" }
+    - { name: "Bash", level: "basic" }
+    - { name: "SQL", level: "basic" }
 
 - category: "Data & Tools"
   items:
-    - { name: "pandas / NumPy", level: "expert" }
-    - { name: "Git", level: "proficient" }
-    - { name: "Docker", level: "proficient" }
+    - { name: "Excel / Power BI", level: "proficient" }
+    - { name: "pandas / numpy", level: "proficient" }
+    - { name: "Data analysis / Linear regression", level: "basic" }
+    - { name: "Git", level: "basic" }
+    - { name: "Docker", level: "basic" }
 
-- category: "Wet Lab"
+- category: "Quality & Regulatory"
   items:
-    - { name: "PCR / qPCR", level: "expert" }
-    - { name: "NGS library prep", level: "proficient" }
-    - { name: "Cloning", level: "proficient" }
+    - { name: "ANVISA technical dossier", level: "expert" }
+    - { name: "Good Laboratory Practice (GLP)", level: "proficient" }
+    - { name: "Molecular Biology lab setup & implementation", level: "expert" }
+
+- category: "Electronics & IoT (project in progress)"
+  items:
+    - { name: "MicroPython", level: "basic" }
+    - { name: "Raspberry Pi Pico / ESP32 (RP2040)", level: "basic" }
+    - { name: "FastAPI", level: "basic" }
+    - { name: "MQTT (Mosquitto)", level: "basic" }
+    - { name: "pytest", level: "basic" }
+
+- category: "Languages"
+  items:
+    - { name: "Portuguese (Native)", level: "expert" }
+    - { name: "English (Professional Working)", level: "proficient" }
+    - { name: "Spanish (Professional Working)", level: "proficient" }

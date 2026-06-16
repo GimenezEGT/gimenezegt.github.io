@@ -5,6 +5,7 @@ date: 2026-05-20
 categories: [data-science, r]
 tags: [r, tidyverse, rnaseq, visualization]
 featured: false
+published: false
 ---
 
 RNA-seq count matrices arrive wide, messy, and stubbornly un-tidy. This post is a
