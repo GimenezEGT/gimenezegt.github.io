@@ -4,7 +4,7 @@ title:  "Como criar um teclado personalizado com um Pipico (tutorial de Raspberr
 date:   2026-06-10 23:03:45 -0300
 categories: [tutorials, electronics, raspberry-pi, automation]
 excerpt: "Aprenda passo a passo como configurar um Raspberry Pi Pico com CircuitPython para criar botões externos que funcionam como um teclado virtual no seu PC."
-image: /assets/images/blog/pipico-keyboard-cover.png
+image: /assets/images/blog/pipico.png
 toc: true
 featured: true
 ---

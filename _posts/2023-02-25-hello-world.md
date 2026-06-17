@@ -3,12 +3,14 @@ layout: post
 title:  "Hello World!"
 date:   2023-02-25 13:21:01 -0300
 categories: welcome
-image: /assets/images/blog/pipico-keyboard-cover.png
+excerpt: "Bem-vindo(a) ao meu site!"
+image: /assets/images/blog/pip-man.jpg
 toc: true
 featured: true
 ---
 
-## PT
+### PT
+
 Olá a todos! Permitam-me apresentar-me. Sou Enrico Gimenez, um brasileiro que adora aprender sobre este mundo que nos rodeia. Bem, isso me levou a me interessar principalmente pelas Ciências Naturais e pela Filosofia.
 Nasci no segundo dia da Primavera brasileira de 1996, graças a Deus e ao movimento de translação da Terra.
 Estou escrevendo este post agora em fevereiro de 2023 porque sinto que estou começando uma nova jornada. Eu sempre fui um bom aluno, mas, como todos sabem... a escola é apenas escola. Na universidade, eu pude aprender um pouco mais, mas senti que não era suficiente. Eu sentia que qualquer conhecimento deveria vir em primeiro lugar de mim mesmo. Há alguns anos, decidi traçar meu próprio caminho de conhecimento porque senti que poderia melhorar minhas habilidades e entender melhor o mundo ao meu redor.
@@ -24,7 +26,7 @@ Então, vamos lá.
 print("Hello, world!")
 ~~~
 
-## EN
+### EN
 
 Hello everyone! Allow me to introduce myself. I'm Enrico Gimenez, a Brazilian guy who loves learning about this world that surrounds us. Well, this led me to be interested in Natural Sciences and Philosophy mainly.
 I was born on the second day of Brazilian Spring in 1996, thanks to God and His earth's translational movement.
