@@ -10,6 +10,18 @@
   featured: true
   post: ""
 
+# 
+
+- title: "DocRetriever"
+  description: "CLI tool that retrieves documentation recursively from any website, including API docs, and saves it in a Markdown structured format for offline access, searching and RAG applications."
+  image: "/assets/images/DocRetriever.png"
+  tags: ["Python", "Bioinformatics"]
+  repo: "https://github.com/GimenezEGT/Doc-Retriever"
+  demo: ""
+  featured: true
+  post: ""
+
+
 # - title: "ExpressionAtlas"
 #   description: "Interactive dashboard for exploring differential gene-expression results across conditions."
 #   image: ""
