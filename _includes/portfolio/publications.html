@@ -1,0 +1,57 @@
+{%- comment -%}
+  Publications list (FR-001..FR-012). Data-driven from _data/publications.yml.
+  Featured entry first + emphasised; the remaining entries newest-year first. The
+  author's own name (per-entry `me` token) is bolded within the authors string.
+  Link target = `url`, else https://doi.org/<doi>; rendered only when resolvable
+  (no broken links). Fully server-rendered; empty data shows a tasteful empty state.
+{%- endcomment -%}
+{%- assign pubs = site.data.publications -%}
+{%- assign featured = pubs | where: "featured", true -%}
+{%- assign rest = pubs | where_exp: "p", "p.featured != true" | sort: "year" | reverse -%}
+{%- assign ordered = featured | concat: rest -%}
+<section class="section publications" id="publications" aria-labelledby="publications-heading">
+  <div class="container">
+    {% include shared/section-header.html label="publications" heading="Publications" id="publications-heading" %}
+
+    {% if ordered.size > 0 %}
+    <ol class="pub-list">
+      {% for pub in ordered %}
+      {%- assign link = "" -%}
+      {%- if pub.url and pub.url != "" -%}
+        {%- assign link = pub.url -%}
+      {%- elsif pub.doi and pub.doi != "" -%}
+        {%- assign link = pub.doi | prepend: "https://doi.org/" -%}
+      {%- endif -%}
+      {%- capture me_bold -%}<strong>{{ pub.me }}</strong>{%- endcapture -%}
+      {%- if pub.me and pub.me != "" -%}
+        {%- assign authors_html = pub.authors | replace: pub.me, me_bold -%}
+      {%- else -%}
+        {%- assign authors_html = pub.authors -%}
+      {%- endif -%}
+      {%- assign type_label = "" -%}
+      {%- if pub.type == "article" -%}{%- assign type_label = "Journal article" -%}
+      {%- elsif pub.type == "chapter" -%}{%- assign type_label = "Book chapter" -%}{%- endif -%}
+      <li class="pub{% if pub.featured %} pub--featured{% endif %}">
+        {%- if pub.featured %}<p class="pub__badge">Featured</p>{% endif -%}
+        <p class="pub__authors">{{ authors_html }} <span class="pub__year">({{ pub.year }})</span></p>
+        <cite class="pub__title">
+          {%- if link != "" -%}
+          <a class="pub__link" href="{{ link }}" target="_blank" rel="noopener">{{ pub.title }}&nbsp;&#8599;</a>
+          {%- else -%}
+          {{ pub.title }}
+          {%- endif -%}
+        </cite>
+        <p class="pub__meta">
+          <span class="pub__venue">{{ pub.venue }}</span>
+          {%- if type_label != "" %}<span class="pub__type">{{ type_label }}</span>{% endif -%}
+          {%- if pub.doi and pub.doi != "" %}<span class="pub__doi">doi:{{ pub.doi }}</span>{% endif -%}
+        </p>
+        {%- if pub.featured and pub.note and pub.note != "" %}<p class="pub__note">{{ pub.note }}</p>{% endif -%}
+      </li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p class="text-muted">Publications will appear here soon.</p>
+    {% endif %}
+  </div>
+</section>
