@@ -1,0 +1,65 @@
+# Academic publications rendered by _includes/portfolio/publications.html.
+# Fields:
+#   authors  (req) — full author list as written in the paper.
+#   me       (req) — EXACT substring of your name to bold for THIS entry
+#                    (your name appears in different forms across papers).
+#   year     (req) — numeric year (unquoted, so sorting is numeric).
+#   title    (req) — the work's title.
+#   venue    (req) — journal/book + locator (volume, pages, publisher…).
+#   doi      (opt) — DOI string; if `url` is empty the link uses https://doi.org/<doi>.
+#   url      (opt) — explicit link target (wins over doi); e.g. a book-chapter URL.
+#   type     (opt) — "article" | "chapter".
+#   featured (opt) — at most ONE true: emphasised and listed first.
+#   note     (opt) — short significance caption, shown only on the featured entry.
+# Non-featured entries are listed newest-year first automatically.
+
+- authors: "Giovanelli Tacconi Gimenez E, Viana MVC, de Jesus Sousa T, Aburjaile F, Brenig B, Silva A, Azevedo V"
+  me: "Giovanelli Tacconi Gimenez E"
+  year: 2024
+  title: "Resequencing and characterization of the first Corynebacterium pseudotuberculosis genome isolated from camel."
+  venue: "PeerJ, 12, e16513"
+  doi: "10.7717/peerj.16513"
+  url: ""
+  type: "article"
+  featured: true
+  note: "First-author work — my master's research turned into published science: the first resequenced Corynebacterium pseudotuberculosis genome isolated from a camel."
+
+- authors: "Ariute JC, Coelho-Rocha ND, Dantas CWD, de Vasconcelos LAT, Profeta R, de Jesus Sousa T, de Souza Novaes A, Galotti B, Gomes LG, Gimenez EGT, Diniz C, Dias MV, de Jesus LCL, Jaiswal AK, Tiwari S, Carvalho R, Benko-Iseppon AM, Brenig B, Azevedo V, Barh D"
+  me: "Gimenez EGT"
+  year: 2023
+  title: "Probiogenomics of Leuconostoc mesenteroides Strains F-21 and F-22 Isolated from Human Breast Milk Reveal Beneficial Properties."
+  venue: "Probiotics and Antimicrobial Proteins, 17(2), 500"
+  doi: "10.1007/s12602-023-10170-7"
+  url: ""
+  type: "article"
+  featured: false
+
+- authors: "Mambelli F, Santos BPO, Morais SB, Gimenez EGT, Astoni DCdS, Braga AD, Ferreira RS, Amaral FA, de Magalhães MTQ, Oliveira SC"
+  me: "Gimenez EGT"
+  year: 2021
+  title: "S. mansoni SmKI-1 Kunitz-domain: Leucine point mutation at P1 site generates enhanced neutrophil elastase inhibitory activity."
+  venue: "PLoS Neglected Tropical Diseases, 15(1), e0009007"
+  doi: "10.1371/journal.pntd.0009007"
+  url: ""
+  type: "article"
+  featured: false
+
+- authors: "Souza C, Sanches RCO, Assis NRG, Marinho FV, Mambelli FS, Morais SB, Gimenez EGT, Guimarães ES, Castro TBR, Oliveira SC"
+  me: "Gimenez EGT"
+  year: 2020
+  title: "The role of the adaptor molecule STING during Schistosoma mansoni infection."
+  venue: "Scientific Reports, 10, 7901"
+  doi: "10.1038/s41598-020-64788-6"
+  url: ""
+  type: "article"
+  featured: false
+
+- authors: "Carvalho R, Carmo F, Heloisa S, Cordeiro B, Vaz A, Gimenez E, Goulart L, Góes-Neto A, Le Loir Y, Jan G, Azevedo V"
+  me: "Gimenez E"
+  year: 2018
+  title: "Metagenomic Approaches for Investigating the Role of the Microbiome in Gut Health and Inflammatory Diseases."
+  venue: "In: Kumavath RN (Ed.), Metagenomics for Gut Microbes. IntechOpen"
+  doi: ""
+  url: "https://www.intechopen.com/chapters/57863"
+  type: "chapter"
+  featured: false
