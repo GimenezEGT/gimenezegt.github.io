@@ -4,6 +4,18 @@
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#08090d">
 
+  {%- comment -%} Google Analytics (gtag.js). Site-wide via shared head; production builds only so local serves don't pollute stats. {%- endcomment -%}
+  {%- if jekyll.environment == "production" -%}
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QQPNGBTSB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0QQPNGBTSB');
+  </script>
+  {%- endif -%}
+
   <link rel="icon" href="{{ '/assets/images/favicon/favicon.ico' | relative_url }}" sizes="any">
 
   {% include shared/seo.html %}
