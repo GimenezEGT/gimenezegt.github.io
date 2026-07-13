@@ -2,10 +2,22 @@
 # about section (FR-006). Edit freely — templates read these, never hard-code.
 name: "Enrico Gimenez"
 tagline: "Molecular biologist building bioinformatics & data-science tools."
-bio: >
-  I'm a molecular biologist who codes. I build reproducible pipelines and
-  data tools that turn messy wet-lab and sequencing data into answers —
-  bridging the bench and the terminal.
+bio: |
+  I'm Enrico Gimenez, a molecular biologist and bioinformatician based in Belo
+  Horizonte, Brazil. My work sits where the wet lab meets the command line: I
+  design and validate molecular diagnostics (PCR/qPCR, primer and probe design),
+  assemble and compare bacterial genomes, and turn messy sequencing and lab data
+  into reproducible, shareable results.
+
+  That path runs from published research — bacterial genomics, probiogenomics, and
+  infection immunology, including first-author work on the first resequenced
+  *Corynebacterium pseudotuberculosis* genome isolated from a camel — to building
+  small, practical tools in Python, from bioinformatics utilities to AI-assisted
+  data products. I also design and build professional websites for individuals and
+  businesses — fast, responsive static sites deployed on free hosting, so they run
+  with no monthly hosting cost. Lately I've been extending the same reproducible
+  mindset into IoT and electronics. I work in Portuguese, English, and Spanish, and
+  I'm drawn to problems that reward careful method and clean automation.
 facts:
   - { label: "based_in", value: "Belo Horizonte, BR" }
   - { label: "focus", value: "Bioinformatics · Data Science · IoT" }
