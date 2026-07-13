@@ -28,6 +28,24 @@
   featured: true
   post: ""
 
+- title: "Drip & Drain Plumbing"
+  description: "Responsive, ready-to-use Jekyll theme for local-service businesses — switchable trade presets (plumbing, HVAC, electrical, roofing) and colour palettes, plus service listings, pricing, reviews, and clear call-to-action contact paths. Shown as the 'Drip & Drain' plumbing demo."
+  image: "/assets/images/dripdrain.png"
+  tags: ["Jekyll", "Ruby", "SCSS", "HTML", "JavaScript", "Responsive"]
+  repo: ""
+  demo: "https://incandescent-babka-8824ca.netlify.app/"
+  featured: false
+  post: ""
+
+- title: "Giovanna Gimenez — Psicanálise Clínica"
+  description: "Minimalist static website for a clinical psychoanalysis practice — online sessions, practitioner background, areas of focus, and multi-channel contact. Portuguese-language site built with Nunjucks and hosted on GitHub Pages."
+  image: "/assets/images/giovanna-psicanalise.png"
+  tags: ["HTML", "CSS", "JavaScript", "Nunjucks", "Responsive"]
+  repo: ""
+  demo: "https://giovannapsicanalista.github.io/"
+  featured: false
+  post: ""
+
 
 # - title: "ExpressionAtlas"
 #   description: "Interactive dashboard for exploring differential gene-expression results across conditions."
