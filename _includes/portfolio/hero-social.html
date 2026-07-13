@@ -1,0 +1,20 @@
+{%- comment -%}
+  Hero social/contact icon row (Feature 013). Data-driven from _data/social.yml;
+  each entry becomes an accessible icon link. External links open in a new tab
+  with rel="me noopener"; mailto opens the mail client in place. The SVG is
+  decorative (aria-hidden); the accessible name lives on the <a> via aria-label.
+  Unknown icon keys fall back to the visible platform text so the link is never
+  empty. Renders nothing when the data list is empty.
+{%- endcomment -%}
+{%- if site.data.social and site.data.social.size > 0 -%}
+<ul class="hero__social" aria-label="Social links">
+  {%- for link in site.data.social -%}
+  <li>
+    <a href="{{ link.url }}" aria-label="{{ link.platform }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="me noopener"{% endunless %}>
+      {%- capture icon_svg -%}{% include shared/icon.html name=link.icon %}{%- endcapture -%}
+      {%- if icon_svg contains "<svg" -%}{{ icon_svg }}{%- else -%}<span class="hero__social-text">{{ link.platform }}</span>{%- endif -%}
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>
+{%- endif -%}
