@@ -1,0 +1,42 @@
+// ── Hero social icon row (Feature 013) ───────────────────────────────────────
+// Data-driven contact icons under the hero CTAs. Token-only; no JS. The links
+// carry the accessible name; the SVGs inherit colour via `currentColor`.
+
+.hero__social {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hero__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  // Padding brings the tap target to ~44px around the ~20px glyph.
+  padding: var(--space-3);
+  color: var(--text-muted);
+  border-radius: var(--radius);
+  transition: color var(--transition-base);
+}
+
+.hero__social a:hover,
+.hero__social a:focus-visible {
+  color: var(--accent-primary);
+}
+
+.hero__social .icon {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+// Reduced-motion users skip the colour transition (colour still changes).
+@media (prefers-reduced-motion: reduce) {
+  .hero__social a {
+    transition: none;
+  }
+}
