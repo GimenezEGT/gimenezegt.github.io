@@ -4,12 +4,11 @@ description: "Bioinformatics · Data Science · Molecular Biology"
 # Hash form so jekyll-seo-tag emits twitter:creator as a handle (not the name).
 # Display consumers use `site.author.name` (see footer.html, shared/seo.html).
 author:
-  name: "Enrico Gimenez"
-  twitter: enricogimenez         # TODO(launch): set real handle (no @)
+  name: "Enrico Gimenez"        # TODO(launch): set real handle (no @)
 lang: en
 # TODO(launch): set BOTH `url` here and the root `CNAME` file to the real custom
 # domain before deploy. These are the only two places the domain is configured.
-url: "https://example.com"
+url: "https://gimenezegt.github.io"
 baseurl: ""
 
 # ── SEO / social (jekyll-seo-tag + JSON-LD in _includes/shared/seo.html) ──────
